@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.facebook.react.bridge.BaseActivityEventListener
 import com.facebook.react.bridge.ColorPropConverter
@@ -32,6 +33,8 @@ import com.luck.picture.lib.style.TitleBarStyle
 import com.luck.picture.lib.utils.DateUtils
 import com.luck.picture.lib.utils.DensityUtil
 import com.luck.picture.lib.utils.MediaUtils
+import com.margelo.nitro.multipleimagepicker.editor.dialog.PictureEditorCallback
+import com.margelo.nitro.multipleimagepicker.editor.dialog.PictureEditorDialog
 import com.yalantis.ucrop.UCrop
 import com.yalantis.ucrop.UCrop.Options
 import com.yalantis.ucrop.UCrop.REQUEST_CROP
@@ -194,71 +197,97 @@ class MultipleImagePickerImp(reactContext: ReactApplicationContext?) :
         )
 
         try {
-            val uri = when {
-                // image network
-                image.startsWith("http://") || image.startsWith("https://") -> {
-                    // Handle remote URL
-                    val url = URL(image)
-                    val connection = url.openConnection() as HttpURLConnection
-                    connection.doInput = true
-                    connection.connect()
+//            val uri = when {
+//                // image network
+//                image.startsWith("http://") || image.startsWith("https://") -> {
+//                    // Handle remote URL
+//                    val url = URL(image)
+//                    val connection = url.openConnection() as HttpURLConnection
+//                    connection.doInput = true
+//                    connection.connect()
+//
+//                    val inputStream = connection.inputStream
+//                    // Create a temp file to store the image
+//                    val file = File(appContext.cacheDir, "CROP_")
+//                    file.outputStream().use { output ->
+//                        inputStream.copyTo(output)
+//                    }
+//
+//                    Uri.fromFile(file)
+//                }
+//
+//                else -> Uri.parse(image)
+//            }
+//
+//            val destinationUri = Uri.fromFile(
+//                File(getSandboxPath(appContext), DateUtils.getCreateFileName("CROP_") + ".jpeg")
+//            )
+//            val uCrop = UCrop.of<Any>(uri, destinationUri).withOptions(cropOption)
+//
+//            // set engine
+//            uCrop.setImageEngine(CropImageEngine())
+//            // start edit
+//
+//            val cropActivityEventListener = object : BaseActivityEventListener() {
+//                override fun onActivityResult(
+//                    activity: Activity,
+//                    requestCode: Int,
+//                    resultCode: Int,
+//                    data: Intent?
+//                ) {
+//                    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CROP) {
+//                        val resultUri = UCrop.getOutput(data!!)
+//                        val width = UCrop.getOutputImageWidth(data).toDouble()
+//                        val height = UCrop.getOutputImageHeight(data).toDouble()
+//
+//                        resultUri?.let {
+//                            val result = CropResult(
+//                                path = it.toString(),
+//                                width,
+//                                height,
+//                            )
+//                            resolved(result)
+//                        }
+//                    } else if (resultCode == UCrop.RESULT_ERROR) {
+//                        val cropError = UCrop.getError(data!!)
+//                        rejected(0.0)
+//                    }
+//
+//                    // Remove listener after getting result
+//                    reactApplicationContext.removeActivityEventListener(this)
+//                }
+//            }
+//
+//            // Add listener before starting UCrop
+//            reactApplicationContext.addActivityEventListener(cropActivityEventListener)
+//
+//            currentActivity?.let { uCrop.start(it, REQUEST_CROP) }
+            val activity = currentActivity
+            val context = reactApplicationContext
 
-                    val inputStream = connection.inputStream
-                    // Create a temp file to store the image
-                    val file = File(appContext.cacheDir, "CROP_")
-                    file.outputStream().use { output ->
-                        inputStream.copyTo(output)
-                    }
+            if (activity is AppCompatActivity) {
+                println("Go to openEditor ===============")
 
-                    Uri.fromFile(file)
-                }
-
-                else -> Uri.parse(image)
-            }
-
-            val destinationUri = Uri.fromFile(
-                File(getSandboxPath(appContext), DateUtils.getCreateFileName("CROP_") + ".jpeg")
-            )
-            val uCrop = UCrop.of<Any>(uri, destinationUri).withOptions(cropOption)
-
-            // set engine
-            uCrop.setImageEngine(CropImageEngine())
-            // start edit
-
-            val cropActivityEventListener = object : BaseActivityEventListener() {
-                override fun onActivityResult(
-                    activity: Activity,
-                    requestCode: Int,
-                    resultCode: Int,
-                    data: Intent?
-                ) {
-                    if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CROP) {
-                        val resultUri = UCrop.getOutput(data!!)
-                        val width = UCrop.getOutputImageWidth(data).toDouble()
-                        val height = UCrop.getOutputImageHeight(data).toDouble()
-
-                        resultUri?.let {
+                PictureEditorDialog.newInstance()
+                    .setBitmapPathOrUri(
+                        null, Uri.parse(image)
+                    )
+                    .setPictureEditorCallback(object : PictureEditorCallback {
+                        override fun onFinish(path: String, uri: Uri) {
+//                                        previewAdapter.getItem(binding.viewpager2.currentItem).uri = uri
+//                                        previewAdapter.notifyItemChanged(binding.viewpager2.currentItem)
+//                            promise.resolve(path)
                             val result = CropResult(
-                                path = it.toString(),
-                                width,
-                                height,
+                                path,
+                                500.0,
+                                500.0,
                             )
                             resolved(result)
                         }
-                    } else if (resultCode == UCrop.RESULT_ERROR) {
-                        val cropError = UCrop.getError(data!!)
-                        rejected(0.0)
-                    }
-
-                    // Remove listener after getting result
-                    reactApplicationContext.removeActivityEventListener(this)
-                }
+                    })
+                    .show(activity)
+                println("End to openEditor ===============")
             }
-
-            // Add listener before starting UCrop
-            reactApplicationContext.addActivityEventListener(cropActivityEventListener)
-
-            currentActivity?.let { uCrop.start(it, REQUEST_CROP) }
         } catch (e: Exception) {
             rejected(0.0)
         }

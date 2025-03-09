@@ -18,7 +18,7 @@ React Native Multiple Image Picker **(RNMIP)** enables application to pick image
 
 | 🤩  | ![Logo][Logo]                                                                         |
 | --- | ------------------------------------------------------------------------------------- |
-| 🍕  | [**Crop**](/docs/docs/CROP.mdx) single/multiple image.                                |
+| 🍕  | [**Edit**] Edit single/multiple image.                                |
 | 🎑  | [**Preview**](/docs/docs/PREVIEW.mdx) image/video.                                    |
 | 📸  | [**Camera**](/docs/docs/CAMERA.mdx) module for capturing photos and recording videos. |
 | 🐳  | Keep the previous selection.                                                          |
@@ -51,7 +51,7 @@ Here is a simple usage of the Multiple Image Picker. <br/>
 See more [**Config**](https://nitrogenzlab.github.io/react-native-multiple-image-picker/config)
 
 ```typescript
-import { openPicker, Config } from '@baronha/react-native-multiple-image-picker'
+import { openPicker, Config } from 'react-native-multiple-image-picker-editor'
 
 const config: Config = {
   maxSelect: 10,
@@ -121,9 +121,9 @@ Besides, I also built a product using HXPhotoPicker here, Hope you support:<br/>
 
 ## Showcase ✨
 
-List of used applications with `@baronha/react-native-multiple-image-picker`
+List of used applications with `react-native-multiple-image-picker-editor`
 
-Contributions are welcome! If you have an application that uses `@baronha/react-native-multiple-image-picker`, please open a [pull request](/docs/docs/SHOWCASE/showcase.json) to add it to the list.
+Contributions are welcome! If you have an application that uses `react-native-multiple-image-picker-editor`, please open a [pull request](/docs/docs/SHOWCASE/showcase.json) to add it to the list.
 
 See all [**Showcase**](https://nitrogenzlab.github.io/react-native-multiple-image-picker/showcase)
 

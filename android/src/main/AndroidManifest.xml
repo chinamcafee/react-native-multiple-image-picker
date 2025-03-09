@@ -15,5 +15,19 @@
     <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
     <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
 
-    <application android:requestLegacyExternalStorage="true" />
+    <application android:requestLegacyExternalStorage="true" >
+        <provider
+            android:name=".provider.PictureFileProvider"
+            android:authorities="${applicationId}.linkUProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/ps_file_paths" />
+        </provider>
+        <provider
+            android:name=".provider.BaseContentProvider"
+            android:authorities="${applicationId}.BaseProvider"
+            android:exported="false" />
+    </application>
 </manifest>

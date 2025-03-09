@@ -3,7 +3,7 @@
     "baseUrl": ".",
     "outDir": "./lib",
     "paths": {
-      "@baronha/react-native-multiple-image-picker": ["src"]
+      "react-native-multiple-image-picker-editor": ["src"]
     },
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,

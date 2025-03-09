@@ -2,7 +2,7 @@ import { createContext, useContext } from 'react'
 import {
   Config,
   defaultOptions,
-} from '@baronha/react-native-multiple-image-picker'
+} from 'react-native-multiple-image-picker-editor'
 
 export const AppContext = createContext<{
   options: Config

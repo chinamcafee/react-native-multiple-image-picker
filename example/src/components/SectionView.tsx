@@ -5,7 +5,7 @@ import { View } from './View'
 import { Text } from './Text'
 import { StyleSheet, Switch } from 'react-native'
 import { useAppContext } from '../hook/context'
-import { Config } from '@baronha/react-native-multiple-image-picker'
+import { Config } from 'react-native-multiple-image-picker-editor'
 import { SegmentControl } from './SegmentControl'
 
 type key = keyof Config

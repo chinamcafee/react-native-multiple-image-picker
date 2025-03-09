@@ -46,53 +46,53 @@ extension HybridMultipleImagePicker {
     func setCropConfig(_ cropConfig: PickerCropConfig) -> EditorConfiguration {
         var config = EditorConfiguration()
 
-        if let defaultRatio = cropConfig.defaultRatio {
-            config.cropSize.aspectRatio = .init(width: defaultRatio.width, height: defaultRatio.height)
-        }
+        // if let defaultRatio = cropConfig.defaultRatio {
+        //     config.cropSize.aspectRatio = .init(width: defaultRatio.width, height: defaultRatio.height)
+        // }
 
-        config.photo.defaultSelectedToolOption = .cropSize
+        // config.photo.defaultSelectedToolOption = .cropSize
 
-        config.isFixedCropSizeState = true
+        // config.isFixedCropSizeState = true
 
-        config.cropSize.defaultSeletedIndex = 0
+        // config.cropSize.defaultSeletedIndex = 0
 
-        let freeStyle = cropConfig.freeStyle ?? true
+        // let freeStyle = cropConfig.freeStyle ?? true
 
-        config.cropSize.isFixedRatio = !freeStyle
+        // config.cropSize.isFixedRatio = !freeStyle
 
-        config.isWhetherFinishButtonDisabledInUneditedState = true
+        // config.isWhetherFinishButtonDisabledInUneditedState = true
 
-        config.cropSize.isRoundCrop = cropConfig.circle ?? false
+        // config.cropSize.isRoundCrop = cropConfig.circle ?? false
 
-        config.cropSize.isResetToOriginal = true
+        // config.cropSize.isResetToOriginal = true
 
-        config.toolsView = .init(toolOptions: [.init(imageType: PickerConfiguration.default.editor.imageResource.editor.tools.cropSize, type: .cropSize)])
+        // config.toolsView = .init(toolOptions: [.init(imageType: PickerConfiguration.default.editor.imageResource.editor.tools.cropSize, type: .cropSize)])
 
-        config.photo.defaultSelectedToolOption = .cropSize
+        // config.photo.defaultSelectedToolOption = .cropSize
 
-        if config.cropSize.isRoundCrop {
-            config.cropSize.aspectRatios = []
-        } else {
-            var aspectRatios: [EditorRatioToolConfig] = PickerConfiguration.default.editor.cropSize.aspectRatios
+        // if config.cropSize.isRoundCrop {
+        //     config.cropSize.aspectRatios = []
+        // } else {
+        //     var aspectRatios: [EditorRatioToolConfig] = PickerConfiguration.default.editor.cropSize.aspectRatios
 
-            let ratio = cropConfig.ratio
-            // custom ratio
-            if ratio.count > 0 {
-                ratio.forEach { ratio in
-                    let width = Int(ratio.width)
-                    let height = Int(ratio.height)
+        //     let ratio = cropConfig.ratio
+        //     // custom ratio
+        //     if ratio.count > 0 {
+        //         ratio.forEach { ratio in
+        //             let width = Int(ratio.width)
+        //             let height = Int(ratio.height)
 
-                    aspectRatios.insert(.init(title: .custom(ratio.title ?? "\(width)/\(height)"), ratio: .init(width: width, height: height)), at: 3)
-                }
-            }
+        //             aspectRatios.insert(.init(title: .custom(ratio.title ?? "\(width)/\(height)"), ratio: .init(width: width, height: height)), at: 3)
+        //         }
+        //     }
 
-            config.cropSize.aspectRatios = freeStyle ? aspectRatios : aspectRatios.filter {
-                // check freeStyle crop
-                if $0.ratio == .zero { return false }
+        //     config.cropSize.aspectRatios = freeStyle ? aspectRatios : aspectRatios.filter {
+        //         // check freeStyle crop
+        //         if $0.ratio == .zero { return false }
 
-                return true
-            }
-        }
+        //         return true
+        //     }
+        // }
 
         return config
     }
