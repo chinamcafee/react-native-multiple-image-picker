@@ -1,6 +1,6 @@
 {
   "name": "react-native-multiple-image-picker-editor",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "� react-native-multiple-image-picker enables applications to pick images and videos from multiple smart albums in iOS/Android And Edit Image in iOS/Android",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
