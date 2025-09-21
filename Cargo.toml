@@ -1,0 +1,22 @@
+[workspace]
+members = [
+    "ios",
+]
+
+[package]
+name = "react-native-multiple-image-picker-editor"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "react_native_multiple_image_picker_editor"
+crate-type = ["cdylib"]
+
+[dependencies]
+# Add your Rust dependencies here if needed
+
+[target.'cfg(target_os = "ios")'.dependencies]
+# iOS-specific dependencies
+
+[target.'cfg(target_os = "android")'.dependencies]
+# Android-specific dependencies

@@ -31,7 +31,7 @@ class CameraEngine(
 
         config.color?.let {
             val primaryColor = ColorPropConverter.getColor(it, appContext)
-            camera.setCaptureLoadingColor(primaryColor)
+            primaryColor?.let { color -> camera.setCaptureLoadingColor(color) }
         }
 
         camera.start(fragment.requireActivity(), fragment, requestCode)
