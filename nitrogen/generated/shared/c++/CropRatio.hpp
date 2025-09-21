@@ -20,8 +20,8 @@
 
 
 
-#include <optional>
 #include <string>
+#include <optional>
 
 namespace margelo::nitro::multipleimagepicker {
 
@@ -35,6 +35,7 @@ namespace margelo::nitro::multipleimagepicker {
     double height     SWIFT_PRIVATE;
 
   public:
+    CropRatio() = default;
     explicit CropRatio(std::optional<std::string> title, double width, double height): title(title), width(width), height(height) {}
   };
 
@@ -42,20 +43,18 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ CropRatio <> JS CropRatio (object)
   template <>
-  struct JSIConverter<CropRatio> {
-    static inline CropRatio fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::CropRatio> final {
+    static inline margelo::nitro::multipleimagepicker::CropRatio fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return CropRatio(
+      return margelo::nitro::multipleimagepicker::CropRatio(
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "title")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "width")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "height"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const CropRatio& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::CropRatio& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "title", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.title));
       obj.setProperty(runtime, "width", JSIConverter<double>::toJSI(runtime, arg.width));

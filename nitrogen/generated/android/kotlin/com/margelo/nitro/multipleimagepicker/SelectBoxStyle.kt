@@ -15,11 +15,7 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class SelectBoxStyle {
-  NUMBER,
-  TICK;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class SelectBoxStyle(@DoNotStrip @Keep val value: Int) {
+  NUMBER(0),
+  TICK(1);
 }

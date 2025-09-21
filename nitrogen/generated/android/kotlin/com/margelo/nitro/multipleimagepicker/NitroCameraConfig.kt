@@ -11,18 +11,40 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "NitroCameraConfig".
  */
 @DoNotStrip
 @Keep
-data class NitroCameraConfig(
-  val mediaType: MediaType,
-  val presentation: Presentation,
-  val language: Language,
-  val crop: PickerCropConfig?,
-  val isSaveSystemAlbum: Boolean?,
-  val color: Double?,
-  val cameraDevice: CameraDevice?,
-  val videoMaximumDuration: Double?
-)
+data class NitroCameraConfig
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val mediaType: MediaType,
+    @DoNotStrip
+    @Keep
+    val presentation: Presentation,
+    @DoNotStrip
+    @Keep
+    val language: Language,
+    @DoNotStrip
+    @Keep
+    val crop: PickerCropConfig?,
+    @DoNotStrip
+    @Keep
+    val isSaveSystemAlbum: Boolean?,
+    @DoNotStrip
+    @Keep
+    val color: Double?,
+    @DoNotStrip
+    @Keep
+    val cameraDevice: CameraDevice?,
+    @DoNotStrip
+    @Keep
+    val videoMaximumDuration: Double?
+  ) {
+  /* main constructor */
+}

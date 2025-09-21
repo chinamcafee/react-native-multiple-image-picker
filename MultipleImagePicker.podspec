@@ -27,9 +27,9 @@ Pod::Spec.new do |s|
   }
 
 
-  s.dependency "HXPhotoPicker/Picker", "4.2.5"
-  s.dependency "HXPhotoPicker/Camera/Lite", "4.2.5"
-  s.dependency "HXPhotoPicker/Editor", "4.2.5"
+  s.dependency "HXPhotoPicker/Picker", "5.0.2"
+  s.dependency "HXPhotoPicker/Camera/Lite", "5.0.2"
+  s.dependency "HXPhotoPicker/Editor", "5.0.2"
 
   s.pod_target_xcconfig = {
     # C++ compiler flags, mainly for folly.
@@ -41,6 +41,7 @@ Pod::Spec.new do |s|
     s.dependency "React-Core"
     add_dependency(s, "React-jsinspector", :framework_name => "jsinspector_modern")
     add_dependency(s, "React-rendererconsistency", :framework_name => "React_rendererconsistency")
+    add_dependency(s, "React-jsinspectortracing", :framework_name => 'jsinspector_moderntracing')
   end
 
   load 'nitrogen/generated/ios/MultipleImagePicker+autolinking.rb'

@@ -50,7 +50,8 @@ public extension Text {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__finish.value {
+        if bridge.has_value_std__optional_std__string_(self.__finish) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__finish)
           return String(__unwrapped)
         } else {
           return nil
@@ -73,7 +74,8 @@ public extension Text {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__original.value {
+        if bridge.has_value_std__optional_std__string_(self.__original) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__original)
           return String(__unwrapped)
         } else {
           return nil
@@ -96,7 +98,8 @@ public extension Text {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__preview.value {
+        if bridge.has_value_std__optional_std__string_(self.__preview) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__preview)
           return String(__unwrapped)
         } else {
           return nil
@@ -119,7 +122,8 @@ public extension Text {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__edit.value {
+        if bridge.has_value_std__optional_std__string_(self.__edit) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__edit)
           return String(__unwrapped)
         } else {
           return nil

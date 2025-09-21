@@ -29,6 +29,7 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based struct to the C++ struct CropRatio by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     CropRatio toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldTitle = clazz->getField<jni::JString>("title");

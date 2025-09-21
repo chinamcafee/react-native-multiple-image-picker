@@ -26,9 +26,10 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based enum to the C++ enum Presentation.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     Presentation toCpp() const {
       static const auto clazz = javaClassStatic();
-      static const auto fieldOrdinal = clazz->getField<int>("_ordinal");
+      static const auto fieldOrdinal = clazz->getField<int>("value");
       int ordinal = this->getFieldValue(fieldOrdinal);
       return static_cast<Presentation>(ordinal);
     }

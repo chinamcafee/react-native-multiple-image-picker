@@ -48,46 +48,44 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ Language <> JS Language (union)
   template <>
-  struct JSIConverter<Language> {
-    static inline Language fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::Language> final {
+    static inline margelo::nitro::multipleimagepicker::Language fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("system"): return Language::SYSTEM;
-        case hashString("zh-Hans"): return Language::ZH_HANS;
-        case hashString("zh-Hant"): return Language::ZH_HANT;
-        case hashString("ja"): return Language::JA;
-        case hashString("ko"): return Language::KO;
-        case hashString("en"): return Language::EN;
-        case hashString("th"): return Language::TH;
-        case hashString("id"): return Language::ID;
-        case hashString("vi"): return Language::VI;
-        case hashString("ru"): return Language::RU;
-        case hashString("de"): return Language::DE;
-        case hashString("fr"): return Language::FR;
-        case hashString("ar"): return Language::AR;
+        case hashString("system"): return margelo::nitro::multipleimagepicker::Language::SYSTEM;
+        case hashString("zh-Hans"): return margelo::nitro::multipleimagepicker::Language::ZH_HANS;
+        case hashString("zh-Hant"): return margelo::nitro::multipleimagepicker::Language::ZH_HANT;
+        case hashString("ja"): return margelo::nitro::multipleimagepicker::Language::JA;
+        case hashString("ko"): return margelo::nitro::multipleimagepicker::Language::KO;
+        case hashString("en"): return margelo::nitro::multipleimagepicker::Language::EN;
+        case hashString("th"): return margelo::nitro::multipleimagepicker::Language::TH;
+        case hashString("id"): return margelo::nitro::multipleimagepicker::Language::ID;
+        case hashString("vi"): return margelo::nitro::multipleimagepicker::Language::VI;
+        case hashString("ru"): return margelo::nitro::multipleimagepicker::Language::RU;
+        case hashString("de"): return margelo::nitro::multipleimagepicker::Language::DE;
+        case hashString("fr"): return margelo::nitro::multipleimagepicker::Language::FR;
+        case hashString("ar"): return margelo::nitro::multipleimagepicker::Language::AR;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum Language - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, Language arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::Language arg) {
       switch (arg) {
-        case Language::SYSTEM: return JSIConverter<std::string>::toJSI(runtime, "system");
-        case Language::ZH_HANS: return JSIConverter<std::string>::toJSI(runtime, "zh-Hans");
-        case Language::ZH_HANT: return JSIConverter<std::string>::toJSI(runtime, "zh-Hant");
-        case Language::JA: return JSIConverter<std::string>::toJSI(runtime, "ja");
-        case Language::KO: return JSIConverter<std::string>::toJSI(runtime, "ko");
-        case Language::EN: return JSIConverter<std::string>::toJSI(runtime, "en");
-        case Language::TH: return JSIConverter<std::string>::toJSI(runtime, "th");
-        case Language::ID: return JSIConverter<std::string>::toJSI(runtime, "id");
-        case Language::VI: return JSIConverter<std::string>::toJSI(runtime, "vi");
-        case Language::RU: return JSIConverter<std::string>::toJSI(runtime, "ru");
-        case Language::DE: return JSIConverter<std::string>::toJSI(runtime, "de");
-        case Language::FR: return JSIConverter<std::string>::toJSI(runtime, "fr");
-        case Language::AR: return JSIConverter<std::string>::toJSI(runtime, "ar");
+        case margelo::nitro::multipleimagepicker::Language::SYSTEM: return JSIConverter<std::string>::toJSI(runtime, "system");
+        case margelo::nitro::multipleimagepicker::Language::ZH_HANS: return JSIConverter<std::string>::toJSI(runtime, "zh-Hans");
+        case margelo::nitro::multipleimagepicker::Language::ZH_HANT: return JSIConverter<std::string>::toJSI(runtime, "zh-Hant");
+        case margelo::nitro::multipleimagepicker::Language::JA: return JSIConverter<std::string>::toJSI(runtime, "ja");
+        case margelo::nitro::multipleimagepicker::Language::KO: return JSIConverter<std::string>::toJSI(runtime, "ko");
+        case margelo::nitro::multipleimagepicker::Language::EN: return JSIConverter<std::string>::toJSI(runtime, "en");
+        case margelo::nitro::multipleimagepicker::Language::TH: return JSIConverter<std::string>::toJSI(runtime, "th");
+        case margelo::nitro::multipleimagepicker::Language::ID: return JSIConverter<std::string>::toJSI(runtime, "id");
+        case margelo::nitro::multipleimagepicker::Language::VI: return JSIConverter<std::string>::toJSI(runtime, "vi");
+        case margelo::nitro::multipleimagepicker::Language::RU: return JSIConverter<std::string>::toJSI(runtime, "ru");
+        case margelo::nitro::multipleimagepicker::Language::DE: return JSIConverter<std::string>::toJSI(runtime, "de");
+        case margelo::nitro::multipleimagepicker::Language::FR: return JSIConverter<std::string>::toJSI(runtime, "fr");
+        case margelo::nitro::multipleimagepicker::Language::AR: return JSIConverter<std::string>::toJSI(runtime, "ar");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert Language to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

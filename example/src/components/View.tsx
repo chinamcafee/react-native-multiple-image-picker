@@ -18,8 +18,14 @@ export function View({
     ? theme.background
     : theme[`background_${level}` as keyof typeof theme]
 
+  // Create style object conditionally to avoid invalid flex values
+  const baseStyle: { backgroundColor: string; flex?: number } = { backgroundColor }
+  if (typeof flex === 'number' && !isNaN(flex) && flex >= 0) {
+    baseStyle.flex = flex
+  }
+
   return (
-    <RNView style={[{ backgroundColor, flex }, containerStyle]}>
+    <RNView style={[baseStyle, containerStyle]}>
       {children}
     </RNView>
   )

@@ -22,7 +22,7 @@ import {
   CameraResult,
   Language,
 } from './types'
-import { CropError, CameraError } from './types/error'
+import { CropReject, CameraError } from './types/error'
 
 const Picker = NitroModules.createHybridObject<MultipleImagePicker>(
   'MultipleImagePicker'
@@ -69,27 +69,29 @@ export async function openCropper(
   image: string,
   config?: CropConfig
 ): Promise<CropResult> {
-  return new Promise((resolved, rejected) => {
-    const cropConfig = {
-      presentation: 'fullScreenModal',
-      language: 'system',
-      ratio: [],
-      ...config,
-    } as NitroCropConfig
+  return new Promise(
+    (resolved, rejected: (reason: (typeof CropReject)[0]) => void) => {
+      const cropConfig = {
+        presentation: 'fullScreenModal',
+        language: 'system',
+        ratio: [],
+        ...config,
+      } as NitroCropConfig
 
-    cropConfig.language = validateLanguage(cropConfig.language)
+      cropConfig.language = validateLanguage(cropConfig.language)
 
-    return Picker.openCrop(
-      image,
-      cropConfig,
-      (result: CropResult) => {
-        resolved(result)
-      },
-      (error: CropError) => {
-        rejected(error)
-      }
-    )
-  })
+      return Picker.openCrop(
+        image,
+        cropConfig,
+        (result: CropResult) => {
+          resolved(result)
+        },
+        (error: number) => {
+          rejected(CropReject?.[error as 0 | 1] ?? CropReject[0])
+        }
+      )
+    }
+  )
 }
 
 export function openPreview(

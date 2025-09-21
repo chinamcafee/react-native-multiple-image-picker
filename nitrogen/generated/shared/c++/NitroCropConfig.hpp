@@ -28,8 +28,8 @@ namespace margelo::nitro::multipleimagepicker { struct CropRatio; }
 #include "Language.hpp"
 #include "Presentation.hpp"
 #include <optional>
-#include <vector>
 #include "CropRatio.hpp"
+#include <vector>
 
 namespace margelo::nitro::multipleimagepicker {
 
@@ -46,6 +46,7 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<bool> freeStyle     SWIFT_PRIVATE;
 
   public:
+    NitroCropConfig() = default;
     explicit NitroCropConfig(Language language, Presentation presentation, std::optional<bool> circle, std::vector<CropRatio> ratio, std::optional<CropRatio> defaultRatio, std::optional<bool> freeStyle): language(language), presentation(presentation), circle(circle), ratio(ratio), defaultRatio(defaultRatio), freeStyle(freeStyle) {}
   };
 
@@ -53,29 +54,27 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ NitroCropConfig <> JS NitroCropConfig (object)
   template <>
-  struct JSIConverter<NitroCropConfig> {
-    static inline NitroCropConfig fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::NitroCropConfig> final {
+    static inline margelo::nitro::multipleimagepicker::NitroCropConfig fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return NitroCropConfig(
-        JSIConverter<Language>::fromJSI(runtime, obj.getProperty(runtime, "language")),
-        JSIConverter<Presentation>::fromJSI(runtime, obj.getProperty(runtime, "presentation")),
+      return margelo::nitro::multipleimagepicker::NitroCropConfig(
+        JSIConverter<margelo::nitro::multipleimagepicker::Language>::fromJSI(runtime, obj.getProperty(runtime, "language")),
+        JSIConverter<margelo::nitro::multipleimagepicker::Presentation>::fromJSI(runtime, obj.getProperty(runtime, "presentation")),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, "circle")),
-        JSIConverter<std::vector<CropRatio>>::fromJSI(runtime, obj.getProperty(runtime, "ratio")),
-        JSIConverter<std::optional<CropRatio>>::fromJSI(runtime, obj.getProperty(runtime, "defaultRatio")),
+        JSIConverter<std::vector<margelo::nitro::multipleimagepicker::CropRatio>>::fromJSI(runtime, obj.getProperty(runtime, "ratio")),
+        JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CropRatio>>::fromJSI(runtime, obj.getProperty(runtime, "defaultRatio")),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, "freeStyle"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const NitroCropConfig& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::NitroCropConfig& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, "language", JSIConverter<Language>::toJSI(runtime, arg.language));
-      obj.setProperty(runtime, "presentation", JSIConverter<Presentation>::toJSI(runtime, arg.presentation));
+      obj.setProperty(runtime, "language", JSIConverter<margelo::nitro::multipleimagepicker::Language>::toJSI(runtime, arg.language));
+      obj.setProperty(runtime, "presentation", JSIConverter<margelo::nitro::multipleimagepicker::Presentation>::toJSI(runtime, arg.presentation));
       obj.setProperty(runtime, "circle", JSIConverter<std::optional<bool>>::toJSI(runtime, arg.circle));
-      obj.setProperty(runtime, "ratio", JSIConverter<std::vector<CropRatio>>::toJSI(runtime, arg.ratio));
-      obj.setProperty(runtime, "defaultRatio", JSIConverter<std::optional<CropRatio>>::toJSI(runtime, arg.defaultRatio));
+      obj.setProperty(runtime, "ratio", JSIConverter<std::vector<margelo::nitro::multipleimagepicker::CropRatio>>::toJSI(runtime, arg.ratio));
+      obj.setProperty(runtime, "defaultRatio", JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CropRatio>>::toJSI(runtime, arg.defaultRatio));
       obj.setProperty(runtime, "freeStyle", JSIConverter<std::optional<bool>>::toJSI(runtime, arg.freeStyle));
       return obj;
     }
@@ -84,11 +83,11 @@ namespace margelo::nitro {
         return false;
       }
       jsi::Object obj = value.getObject(runtime);
-      if (!JSIConverter<Language>::canConvert(runtime, obj.getProperty(runtime, "language"))) return false;
-      if (!JSIConverter<Presentation>::canConvert(runtime, obj.getProperty(runtime, "presentation"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::Language>::canConvert(runtime, obj.getProperty(runtime, "language"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::Presentation>::canConvert(runtime, obj.getProperty(runtime, "presentation"))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, "circle"))) return false;
-      if (!JSIConverter<std::vector<CropRatio>>::canConvert(runtime, obj.getProperty(runtime, "ratio"))) return false;
-      if (!JSIConverter<std::optional<CropRatio>>::canConvert(runtime, obj.getProperty(runtime, "defaultRatio"))) return false;
+      if (!JSIConverter<std::vector<margelo::nitro::multipleimagepicker::CropRatio>>::canConvert(runtime, obj.getProperty(runtime, "ratio"))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CropRatio>>::canConvert(runtime, obj.getProperty(runtime, "defaultRatio"))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, "freeStyle"))) return false;
       return true;
     }

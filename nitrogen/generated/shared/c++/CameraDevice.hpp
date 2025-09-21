@@ -37,24 +37,22 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ CameraDevice <> JS CameraDevice (union)
   template <>
-  struct JSIConverter<CameraDevice> {
-    static inline CameraDevice fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::CameraDevice> final {
+    static inline margelo::nitro::multipleimagepicker::CameraDevice fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("front"): return CameraDevice::FRONT;
-        case hashString("back"): return CameraDevice::BACK;
+        case hashString("front"): return margelo::nitro::multipleimagepicker::CameraDevice::FRONT;
+        case hashString("back"): return margelo::nitro::multipleimagepicker::CameraDevice::BACK;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum CameraDevice - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, CameraDevice arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::CameraDevice arg) {
       switch (arg) {
-        case CameraDevice::FRONT: return JSIConverter<std::string>::toJSI(runtime, "front");
-        case CameraDevice::BACK: return JSIConverter<std::string>::toJSI(runtime, "back");
+        case margelo::nitro::multipleimagepicker::CameraDevice::FRONT: return JSIConverter<std::string>::toJSI(runtime, "front");
+        case margelo::nitro::multipleimagepicker::CameraDevice::BACK: return JSIConverter<std::string>::toJSI(runtime, "back");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert CameraDevice to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

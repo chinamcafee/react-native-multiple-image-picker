@@ -60,16 +60,16 @@
   "devDependencies": {
     "@react-native/eslint-config": "^0.75.2",
     "@types/jest": "^29.5.12",
-    "@types/react": "^18.3.4",
+    "@types/react": "^19.1.10",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "nitro-codegen": "0.20.1",
+    "nitrogen": "0.29.6",
     "prettier": "^3.3.3",
-    "react": "^18.3.1",
-    "react-native": "^0.75.2",
+    "react": "^19.1.0",
+    "react-native": "^0.81.4",
     "react-native-builder-bob": "^0.30.0",
-    "react-native-nitro-modules": "0.20.1",
+    "react-native-nitro-modules": "0.29.6",
     "typescript": "^5.5.4"
   },
   "peerDependencies": {
@@ -123,5 +123,6 @@
         }
       ]
     ]
-  }
+  },
+  "packageManager": "yarn@1.22.22"
 }

@@ -32,6 +32,7 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based struct to the C++ struct PickerCropConfig by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     PickerCropConfig toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldCircle = clazz->getField<jni::JBoolean>("circle");

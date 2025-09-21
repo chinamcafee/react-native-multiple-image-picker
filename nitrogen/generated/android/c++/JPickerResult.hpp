@@ -31,6 +31,7 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based struct to the C++ struct PickerResult by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     PickerResult toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldLocalIdentifier = clazz->getField<jni::JString>("localIdentifier");
@@ -53,6 +54,8 @@ namespace margelo::nitro::multipleimagepicker {
       jni::local_ref<jni::JDouble> creationDate = this->getFieldValue(fieldCreationDate);
       static const auto fieldCrop = clazz->getField<jni::JBoolean>("crop");
       jni::local_ref<jni::JBoolean> crop = this->getFieldValue(fieldCrop);
+      static const auto fieldIsOriginal = clazz->getField<jni::JBoolean>("isOriginal");
+      jni::local_ref<jni::JBoolean> isOriginal = this->getFieldValue(fieldIsOriginal);
       static const auto fieldPath = clazz->getField<jni::JString>("path");
       jni::local_ref<jni::JString> path = this->getFieldValue(fieldPath);
       static const auto fieldType = clazz->getField<JResultType>("type");
@@ -74,6 +77,7 @@ namespace margelo::nitro::multipleimagepicker {
         parentFolderName != nullptr ? std::make_optional(parentFolderName->toStdString()) : std::nullopt,
         creationDate != nullptr ? std::make_optional(creationDate->value()) : std::nullopt,
         crop != nullptr ? std::make_optional(static_cast<bool>(crop->value())) : std::nullopt,
+        isOriginal != nullptr ? std::make_optional(static_cast<bool>(isOriginal->value())) : std::nullopt,
         path->toStdString(),
         type->toCpp(),
         duration != nullptr ? std::make_optional(duration->value()) : std::nullopt,
@@ -99,6 +103,7 @@ namespace margelo::nitro::multipleimagepicker {
         value.parentFolderName.has_value() ? jni::make_jstring(value.parentFolderName.value()) : nullptr,
         value.creationDate.has_value() ? jni::JDouble::valueOf(value.creationDate.value()) : nullptr,
         value.crop.has_value() ? jni::JBoolean::valueOf(value.crop.value()) : nullptr,
+        value.isOriginal.has_value() ? jni::JBoolean::valueOf(value.isOriginal.value()) : nullptr,
         jni::make_jstring(value.path),
         JResultType::fromCpp(value.type),
         value.duration.has_value() ? jni::JDouble::valueOf(value.duration.value()) : nullptr,

@@ -66,8 +66,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<double>`.
    */
   using std__optional_double_ = std::optional<double>;
-  inline std::optional<double> create_std__optional_double_(const double& value) {
+  inline std::optional<double> create_std__optional_double_(const double& value) noexcept {
     return std::optional<double>(value);
+  }
+  inline bool has_value_std__optional_double_(const std::optional<double>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline double get_std__optional_double_(const std::optional<double>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::optional<std::string>
@@ -75,8 +81,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<std::string>`.
    */
   using std__optional_std__string_ = std::optional<std::string>;
-  inline std::optional<std::string> create_std__optional_std__string_(const std::string& value) {
+  inline std::optional<std::string> create_std__optional_std__string_(const std::string& value) noexcept {
     return std::optional<std::string>(value);
+  }
+  inline bool has_value_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline std::string get_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::optional<bool>
@@ -84,8 +96,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<bool>`.
    */
   using std__optional_bool_ = std::optional<bool>;
-  inline std::optional<bool> create_std__optional_bool_(const bool& value) {
+  inline std::optional<bool> create_std__optional_bool_(const bool& value) noexcept {
     return std::optional<bool>(value);
+  }
+  inline bool has_value_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline bool get_std__optional_bool_(const std::optional<bool>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::vector<PickerResult>
@@ -93,7 +111,7 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::vector<PickerResult>`.
    */
   using std__vector_PickerResult_ = std::vector<PickerResult>;
-  inline std::vector<PickerResult> create_std__vector_PickerResult_(size_t size) {
+  inline std::vector<PickerResult> create_std__vector_PickerResult_(size_t size) noexcept {
     std::vector<PickerResult> vector;
     vector.reserve(size);
     return vector;
@@ -104,7 +122,7 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::vector<CropRatio>`.
    */
   using std__vector_CropRatio_ = std::vector<CropRatio>;
-  inline std::vector<CropRatio> create_std__vector_CropRatio_(size_t size) {
+  inline std::vector<CropRatio> create_std__vector_CropRatio_(size_t size) noexcept {
     std::vector<CropRatio> vector;
     vector.reserve(size);
     return vector;
@@ -115,8 +133,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<CropRatio>`.
    */
   using std__optional_CropRatio_ = std::optional<CropRatio>;
-  inline std::optional<CropRatio> create_std__optional_CropRatio_(const CropRatio& value) {
+  inline std::optional<CropRatio> create_std__optional_CropRatio_(const CropRatio& value) noexcept {
     return std::optional<CropRatio>(value);
+  }
+  inline bool has_value_std__optional_CropRatio_(const std::optional<CropRatio>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline CropRatio get_std__optional_CropRatio_(const std::optional<CropRatio>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::optional<PickerCropConfig>
@@ -124,8 +148,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<PickerCropConfig>`.
    */
   using std__optional_PickerCropConfig_ = std::optional<PickerCropConfig>;
-  inline std::optional<PickerCropConfig> create_std__optional_PickerCropConfig_(const PickerCropConfig& value) {
+  inline std::optional<PickerCropConfig> create_std__optional_PickerCropConfig_(const PickerCropConfig& value) noexcept {
     return std::optional<PickerCropConfig>(value);
+  }
+  inline bool has_value_std__optional_PickerCropConfig_(const std::optional<PickerCropConfig>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline PickerCropConfig get_std__optional_PickerCropConfig_(const std::optional<PickerCropConfig>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::optional<Text>
@@ -133,8 +163,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<Text>`.
    */
   using std__optional_Text_ = std::optional<Text>;
-  inline std::optional<Text> create_std__optional_Text_(const Text& value) {
+  inline std::optional<Text> create_std__optional_Text_(const Text& value) noexcept {
     return std::optional<Text>(value);
+  }
+  inline bool has_value_std__optional_Text_(const std::optional<Text>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline Text get_std__optional_Text_(const std::optional<Text>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::optional<CameraDevice>
@@ -142,8 +178,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<CameraDevice>`.
    */
   using std__optional_CameraDevice_ = std::optional<CameraDevice>;
-  inline std::optional<CameraDevice> create_std__optional_CameraDevice_(const CameraDevice& value) {
+  inline std::optional<CameraDevice> create_std__optional_CameraDevice_(const CameraDevice& value) noexcept {
     return std::optional<CameraDevice>(value);
+  }
+  inline bool has_value_std__optional_CameraDevice_(const std::optional<CameraDevice>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline CameraDevice get_std__optional_CameraDevice_(const std::optional<CameraDevice>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::optional<PickerCameraConfig>
@@ -151,8 +193,14 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::optional<PickerCameraConfig>`.
    */
   using std__optional_PickerCameraConfig_ = std::optional<PickerCameraConfig>;
-  inline std::optional<PickerCameraConfig> create_std__optional_PickerCameraConfig_(const PickerCameraConfig& value) {
+  inline std::optional<PickerCameraConfig> create_std__optional_PickerCameraConfig_(const PickerCameraConfig& value) noexcept {
     return std::optional<PickerCameraConfig>(value);
+  }
+  inline bool has_value_std__optional_PickerCameraConfig_(const std::optional<PickerCameraConfig>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline PickerCameraConfig get_std__optional_PickerCameraConfig_(const std::optional<PickerCameraConfig>& optional) noexcept {
+    return *optional;
   }
   
   // pragma MARK: std::function<void(const std::vector<PickerResult>& /* result */)>
@@ -165,15 +213,15 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    */
   class Func_void_std__vector_PickerResult__Wrapper final {
   public:
-    explicit Func_void_std__vector_PickerResult__Wrapper(std::function<void(const std::vector<PickerResult>& /* result */)>&& func): _function(std::make_shared<std::function<void(const std::vector<PickerResult>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<PickerResult> result) const {
+    explicit Func_void_std__vector_PickerResult__Wrapper(std::function<void(const std::vector<PickerResult>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<PickerResult>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<PickerResult> result) const noexcept {
       _function->operator()(result);
     }
   private:
-    std::shared_ptr<std::function<void(const std::vector<PickerResult>& /* result */)>> _function;
-  };
-  Func_void_std__vector_PickerResult_ create_Func_void_std__vector_PickerResult_(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_std__vector_PickerResult__Wrapper wrap_Func_void_std__vector_PickerResult_(Func_void_std__vector_PickerResult_ value) {
+    std::unique_ptr<std::function<void(const std::vector<PickerResult>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_PickerResult_ create_Func_void_std__vector_PickerResult_(void* _Nonnull swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_PickerResult__Wrapper wrap_Func_void_std__vector_PickerResult_(Func_void_std__vector_PickerResult_ value) noexcept {
     return Func_void_std__vector_PickerResult__Wrapper(std::move(value));
   }
   
@@ -187,15 +235,15 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    */
   class Func_void_double_Wrapper final {
   public:
-    explicit Func_void_double_Wrapper(std::function<void(double /* reject */)>&& func): _function(std::make_shared<std::function<void(double /* reject */)>>(std::move(func))) {}
-    inline void call(double reject) const {
+    explicit Func_void_double_Wrapper(std::function<void(double /* reject */)>&& func): _function(std::make_unique<std::function<void(double /* reject */)>>(std::move(func))) {}
+    inline void call(double reject) const noexcept {
       _function->operator()(reject);
     }
   private:
-    std::shared_ptr<std::function<void(double /* reject */)>> _function;
-  };
-  Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) {
+    std::unique_ptr<std::function<void(double /* reject */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper) noexcept;
+  inline Func_void_double_Wrapper wrap_Func_void_double(Func_void_double value) noexcept {
     return Func_void_double_Wrapper(std::move(value));
   }
   
@@ -209,15 +257,15 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    */
   class Func_void_CropResult_Wrapper final {
   public:
-    explicit Func_void_CropResult_Wrapper(std::function<void(const CropResult& /* result */)>&& func): _function(std::make_shared<std::function<void(const CropResult& /* result */)>>(std::move(func))) {}
-    inline void call(CropResult result) const {
+    explicit Func_void_CropResult_Wrapper(std::function<void(const CropResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const CropResult& /* result */)>>(std::move(func))) {}
+    inline void call(CropResult result) const noexcept {
       _function->operator()(result);
     }
   private:
-    std::shared_ptr<std::function<void(const CropResult& /* result */)>> _function;
-  };
-  Func_void_CropResult create_Func_void_CropResult(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_CropResult_Wrapper wrap_Func_void_CropResult(Func_void_CropResult value) {
+    std::unique_ptr<std::function<void(const CropResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CropResult create_Func_void_CropResult(void* _Nonnull swiftClosureWrapper) noexcept;
+  inline Func_void_CropResult_Wrapper wrap_Func_void_CropResult(Func_void_CropResult value) noexcept {
     return Func_void_CropResult_Wrapper(std::move(value));
   }
   
@@ -226,7 +274,7 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    * Specialized version of `std::vector<MediaPreview>`.
    */
   using std__vector_MediaPreview_ = std::vector<MediaPreview>;
-  inline std::vector<MediaPreview> create_std__vector_MediaPreview_(size_t size) {
+  inline std::vector<MediaPreview> create_std__vector_MediaPreview_(size_t size) noexcept {
     std::vector<MediaPreview> vector;
     vector.reserve(size);
     return vector;
@@ -242,36 +290,36 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
    */
   class Func_void_CameraResult_Wrapper final {
   public:
-    explicit Func_void_CameraResult_Wrapper(std::function<void(const CameraResult& /* result */)>&& func): _function(std::make_shared<std::function<void(const CameraResult& /* result */)>>(std::move(func))) {}
-    inline void call(CameraResult result) const {
+    explicit Func_void_CameraResult_Wrapper(std::function<void(const CameraResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const CameraResult& /* result */)>>(std::move(func))) {}
+    inline void call(CameraResult result) const noexcept {
       _function->operator()(result);
     }
   private:
-    std::shared_ptr<std::function<void(const CameraResult& /* result */)>> _function;
-  };
-  Func_void_CameraResult create_Func_void_CameraResult(void* _Nonnull swiftClosureWrapper);
-  inline Func_void_CameraResult_Wrapper wrap_Func_void_CameraResult(Func_void_CameraResult value) {
+    std::unique_ptr<std::function<void(const CameraResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_CameraResult create_Func_void_CameraResult(void* _Nonnull swiftClosureWrapper) noexcept;
+  inline Func_void_CameraResult_Wrapper wrap_Func_void_CameraResult(Func_void_CameraResult value) noexcept {
     return Func_void_CameraResult_Wrapper(std::move(value));
   }
   
-  // pragma MARK: std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>
+  // pragma MARK: std::shared_ptr<HybridMultipleImagePickerSpec>
   /**
-   * Specialized version of `std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>`.
+   * Specialized version of `std::shared_ptr<HybridMultipleImagePickerSpec>`.
    */
-  using std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_ = std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>;
-  std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec> create_std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_(void* _Nonnull swiftUnsafePointer);
-  void* _Nonnull get_std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_(std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_ cppType);
+  using std__shared_ptr_HybridMultipleImagePickerSpec_ = std::shared_ptr<HybridMultipleImagePickerSpec>;
+  std::shared_ptr<HybridMultipleImagePickerSpec> create_std__shared_ptr_HybridMultipleImagePickerSpec_(void* _Nonnull swiftUnsafePointer) noexcept;
+  void* _Nonnull get_std__shared_ptr_HybridMultipleImagePickerSpec_(std__shared_ptr_HybridMultipleImagePickerSpec_ cppType) noexcept;
   
-  // pragma MARK: std::weak_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>
-  using std__weak_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_ = std::weak_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>;
-  inline std__weak_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_ weakify_std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_(const std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>& strong) { return strong; }
+  // pragma MARK: std::weak_ptr<HybridMultipleImagePickerSpec>
+  using std__weak_ptr_HybridMultipleImagePickerSpec_ = std::weak_ptr<HybridMultipleImagePickerSpec>;
+  inline std__weak_ptr_HybridMultipleImagePickerSpec_ weakify_std__shared_ptr_HybridMultipleImagePickerSpec_(const std::shared_ptr<HybridMultipleImagePickerSpec>& strong) noexcept { return strong; }
   
   // pragma MARK: Result<void>
   using Result_void_ = Result<void>;
-  inline Result_void_ create_Result_void_() {
+  inline Result_void_ create_Result_void_() noexcept {
     return Result<void>::withValue();
   }
-  inline Result_void_ create_Result_void_(const std::exception_ptr& error) {
+  inline Result_void_ create_Result_void_(const std::exception_ptr& error) noexcept {
     return Result<void>::withError(error);
   }
 

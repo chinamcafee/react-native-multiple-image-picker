@@ -28,6 +28,7 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based struct to the C++ struct CropResult by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     CropResult toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldPath = clazz->getField<jni::JString>("path");

@@ -14,7 +14,7 @@
 namespace margelo::nitro::multipleimagepicker::bridge::swift {
 
   // pragma MARK: std::function<void(const std::vector<PickerResult>& /* result */)>
-  Func_void_std__vector_PickerResult_ create_Func_void_std__vector_PickerResult_(void* _Nonnull swiftClosureWrapper) {
+  Func_void_std__vector_PickerResult_ create_Func_void_std__vector_PickerResult_(void* _Nonnull swiftClosureWrapper) noexcept {
     auto swiftClosure = MultipleImagePicker::Func_void_std__vector_PickerResult_::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::vector<PickerResult>& result) mutable -> void {
       swiftClosure.call(result);
@@ -22,7 +22,7 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
   }
   
   // pragma MARK: std::function<void(double /* reject */)>
-  Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper) {
+  Func_void_double create_Func_void_double(void* _Nonnull swiftClosureWrapper) noexcept {
     auto swiftClosure = MultipleImagePicker::Func_void_double::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](double reject) mutable -> void {
       swiftClosure.call(reject);
@@ -30,7 +30,7 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
   }
   
   // pragma MARK: std::function<void(const CropResult& /* result */)>
-  Func_void_CropResult create_Func_void_CropResult(void* _Nonnull swiftClosureWrapper) {
+  Func_void_CropResult create_Func_void_CropResult(void* _Nonnull swiftClosureWrapper) noexcept {
     auto swiftClosure = MultipleImagePicker::Func_void_CropResult::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const CropResult& result) mutable -> void {
       swiftClosure.call(result);
@@ -38,26 +38,26 @@ namespace margelo::nitro::multipleimagepicker::bridge::swift {
   }
   
   // pragma MARK: std::function<void(const CameraResult& /* result */)>
-  Func_void_CameraResult create_Func_void_CameraResult(void* _Nonnull swiftClosureWrapper) {
+  Func_void_CameraResult create_Func_void_CameraResult(void* _Nonnull swiftClosureWrapper) noexcept {
     auto swiftClosure = MultipleImagePicker::Func_void_CameraResult::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const CameraResult& result) mutable -> void {
       swiftClosure.call(result);
     };
   }
   
-  // pragma MARK: std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec>
-  std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec> create_std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_(void* _Nonnull swiftUnsafePointer) {
+  // pragma MARK: std::shared_ptr<HybridMultipleImagePickerSpec>
+  std::shared_ptr<HybridMultipleImagePickerSpec> create_std__shared_ptr_HybridMultipleImagePickerSpec_(void* _Nonnull swiftUnsafePointer) noexcept {
     MultipleImagePicker::HybridMultipleImagePickerSpec_cxx swiftPart = MultipleImagePicker::HybridMultipleImagePickerSpec_cxx::fromUnsafe(swiftUnsafePointer);
     return std::make_shared<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpecSwift>(swiftPart);
   }
-  void* _Nonnull get_std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_(std__shared_ptr_margelo__nitro__multipleimagepicker__HybridMultipleImagePickerSpec_ cppType) {
+  void* _Nonnull get_std__shared_ptr_HybridMultipleImagePickerSpec_(std__shared_ptr_HybridMultipleImagePickerSpec_ cppType) noexcept {
     std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpecSwift>(cppType);
-  #ifdef NITRO_DEBUG
+    #ifdef NITRO_DEBUG
     if (swiftWrapper == nullptr) [[unlikely]] {
       throw std::runtime_error("Class \"HybridMultipleImagePickerSpec\" is not implemented in Swift!");
     }
-  #endif
-    MultipleImagePicker::HybridMultipleImagePickerSpec_cxx swiftPart = swiftWrapper->getSwiftPart();
+    #endif
+    MultipleImagePicker::HybridMultipleImagePickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
 

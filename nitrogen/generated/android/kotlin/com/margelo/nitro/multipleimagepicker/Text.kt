@@ -11,14 +11,28 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "Text".
  */
 @DoNotStrip
 @Keep
-data class Text(
-  val finish: String?,
-  val original: String?,
-  val preview: String?,
-  val edit: String?
-)
+data class Text
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val finish: String?,
+    @DoNotStrip
+    @Keep
+    val original: String?,
+    @DoNotStrip
+    @Keep
+    val preview: String?,
+    @DoNotStrip
+    @Keep
+    val edit: String?
+  ) {
+  /* main constructor */
+}

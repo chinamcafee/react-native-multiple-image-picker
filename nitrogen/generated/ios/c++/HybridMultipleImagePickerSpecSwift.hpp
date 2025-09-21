@@ -55,8 +55,8 @@ namespace margelo::nitro::multipleimagepicker { struct CameraResult; }
 
 #include "NitroConfig.hpp"
 #include "MediaType.hpp"
-#include <vector>
 #include "PickerResult.hpp"
+#include <vector>
 #include <string>
 #include <optional>
 #include "ResultType.hpp"
@@ -101,12 +101,16 @@ namespace margelo::nitro::multipleimagepicker {
 
   public:
     // Get the Swift part
-    inline MultipleImagePicker::HybridMultipleImagePickerSpec_cxx getSwiftPart() noexcept { return _swiftPart; }
+    inline MultipleImagePicker::HybridMultipleImagePickerSpec_cxx& getSwiftPart() noexcept {
+      return _swiftPart;
+    }
 
   public:
-    // Get memory pressure
     inline size_t getExternalMemorySize() noexcept override {
       return _swiftPart.getMemorySize();
+    }
+    void dispose() noexcept override {
+      _swiftPart.dispose();
     }
 
   public:

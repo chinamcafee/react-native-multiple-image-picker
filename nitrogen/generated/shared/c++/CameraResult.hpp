@@ -41,6 +41,7 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<std::string> fileName     SWIFT_PRIVATE;
 
   public:
+    CameraResult() = default;
     explicit CameraResult(std::string path, ResultType type, std::optional<double> width, std::optional<double> height, std::optional<double> duration, std::optional<std::string> thumbnail, std::optional<std::string> fileName): path(path), type(type), width(width), height(height), duration(duration), thumbnail(thumbnail), fileName(fileName) {}
   };
 
@@ -48,16 +49,14 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ CameraResult <> JS CameraResult (object)
   template <>
-  struct JSIConverter<CameraResult> {
-    static inline CameraResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::CameraResult> final {
+    static inline margelo::nitro::multipleimagepicker::CameraResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return CameraResult(
+      return margelo::nitro::multipleimagepicker::CameraResult(
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "path")),
-        JSIConverter<ResultType>::fromJSI(runtime, obj.getProperty(runtime, "type")),
+        JSIConverter<margelo::nitro::multipleimagepicker::ResultType>::fromJSI(runtime, obj.getProperty(runtime, "type")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "width")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "height")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "duration")),
@@ -65,10 +64,10 @@ namespace margelo::nitro {
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "fileName"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const CameraResult& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::CameraResult& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "path", JSIConverter<std::string>::toJSI(runtime, arg.path));
-      obj.setProperty(runtime, "type", JSIConverter<ResultType>::toJSI(runtime, arg.type));
+      obj.setProperty(runtime, "type", JSIConverter<margelo::nitro::multipleimagepicker::ResultType>::toJSI(runtime, arg.type));
       obj.setProperty(runtime, "width", JSIConverter<std::optional<double>>::toJSI(runtime, arg.width));
       obj.setProperty(runtime, "height", JSIConverter<std::optional<double>>::toJSI(runtime, arg.height));
       obj.setProperty(runtime, "duration", JSIConverter<std::optional<double>>::toJSI(runtime, arg.duration));
@@ -82,7 +81,7 @@ namespace margelo::nitro {
       }
       jsi::Object obj = value.getObject(runtime);
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "path"))) return false;
-      if (!JSIConverter<ResultType>::canConvert(runtime, obj.getProperty(runtime, "type"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::ResultType>::canConvert(runtime, obj.getProperty(runtime, "type"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "width"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "height"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "duration"))) return false;

@@ -42,6 +42,7 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<std::string> parentFolderName     SWIFT_PRIVATE;
     std::optional<double> creationDate     SWIFT_PRIVATE;
     std::optional<bool> crop     SWIFT_PRIVATE;
+    std::optional<bool> isOriginal     SWIFT_PRIVATE;
     std::string path     SWIFT_PRIVATE;
     ResultType type     SWIFT_PRIVATE;
     std::optional<double> duration     SWIFT_PRIVATE;
@@ -49,21 +50,20 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<std::string> fileName     SWIFT_PRIVATE;
 
   public:
-    explicit PickerResult(std::string localIdentifier, double width, double height, std::string mime, double size, std::optional<double> bucketId, std::optional<std::string> realPath, std::optional<std::string> parentFolderName, std::optional<double> creationDate, std::optional<bool> crop, std::string path, ResultType type, std::optional<double> duration, std::optional<std::string> thumbnail, std::optional<std::string> fileName): localIdentifier(localIdentifier), width(width), height(height), mime(mime), size(size), bucketId(bucketId), realPath(realPath), parentFolderName(parentFolderName), creationDate(creationDate), crop(crop), path(path), type(type), duration(duration), thumbnail(thumbnail), fileName(fileName) {}
+    PickerResult() = default;
+    explicit PickerResult(std::string localIdentifier, double width, double height, std::string mime, double size, std::optional<double> bucketId, std::optional<std::string> realPath, std::optional<std::string> parentFolderName, std::optional<double> creationDate, std::optional<bool> crop, std::optional<bool> isOriginal, std::string path, ResultType type, std::optional<double> duration, std::optional<std::string> thumbnail, std::optional<std::string> fileName): localIdentifier(localIdentifier), width(width), height(height), mime(mime), size(size), bucketId(bucketId), realPath(realPath), parentFolderName(parentFolderName), creationDate(creationDate), crop(crop), isOriginal(isOriginal), path(path), type(type), duration(duration), thumbnail(thumbnail), fileName(fileName) {}
   };
 
 } // namespace margelo::nitro::multipleimagepicker
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ PickerResult <> JS PickerResult (object)
   template <>
-  struct JSIConverter<PickerResult> {
-    static inline PickerResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::PickerResult> final {
+    static inline margelo::nitro::multipleimagepicker::PickerResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return PickerResult(
+      return margelo::nitro::multipleimagepicker::PickerResult(
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "localIdentifier")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "width")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "height")),
@@ -74,14 +74,15 @@ namespace margelo::nitro {
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "parentFolderName")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "creationDate")),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, "crop")),
+        JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, "isOriginal")),
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "path")),
-        JSIConverter<ResultType>::fromJSI(runtime, obj.getProperty(runtime, "type")),
+        JSIConverter<margelo::nitro::multipleimagepicker::ResultType>::fromJSI(runtime, obj.getProperty(runtime, "type")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "duration")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "thumbnail")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "fileName"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const PickerResult& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::PickerResult& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "localIdentifier", JSIConverter<std::string>::toJSI(runtime, arg.localIdentifier));
       obj.setProperty(runtime, "width", JSIConverter<double>::toJSI(runtime, arg.width));
@@ -93,8 +94,9 @@ namespace margelo::nitro {
       obj.setProperty(runtime, "parentFolderName", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.parentFolderName));
       obj.setProperty(runtime, "creationDate", JSIConverter<std::optional<double>>::toJSI(runtime, arg.creationDate));
       obj.setProperty(runtime, "crop", JSIConverter<std::optional<bool>>::toJSI(runtime, arg.crop));
+      obj.setProperty(runtime, "isOriginal", JSIConverter<std::optional<bool>>::toJSI(runtime, arg.isOriginal));
       obj.setProperty(runtime, "path", JSIConverter<std::string>::toJSI(runtime, arg.path));
-      obj.setProperty(runtime, "type", JSIConverter<ResultType>::toJSI(runtime, arg.type));
+      obj.setProperty(runtime, "type", JSIConverter<margelo::nitro::multipleimagepicker::ResultType>::toJSI(runtime, arg.type));
       obj.setProperty(runtime, "duration", JSIConverter<std::optional<double>>::toJSI(runtime, arg.duration));
       obj.setProperty(runtime, "thumbnail", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.thumbnail));
       obj.setProperty(runtime, "fileName", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.fileName));
@@ -115,8 +117,9 @@ namespace margelo::nitro {
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "parentFolderName"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "creationDate"))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, "crop"))) return false;
+      if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, "isOriginal"))) return false;
       if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, "path"))) return false;
-      if (!JSIConverter<ResultType>::canConvert(runtime, obj.getProperty(runtime, "type"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::ResultType>::canConvert(runtime, obj.getProperty(runtime, "type"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "duration"))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "thumbnail"))) return false;
       if (!JSIConverter<std::optional<std::string>>::canConvert(runtime, obj.getProperty(runtime, "fileName"))) return false;

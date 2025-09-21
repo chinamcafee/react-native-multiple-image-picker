@@ -15,11 +15,7 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class CameraDevice {
-  FRONT,
-  BACK;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class CameraDevice(@DoNotStrip @Keep val value: Int) {
+  FRONT(0),
+  BACK(1);
 }

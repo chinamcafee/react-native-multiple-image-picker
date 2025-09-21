@@ -18,7 +18,7 @@ public extension PickerResult {
   /**
    * Create a new instance of `PickerResult`.
    */
-  init(localIdentifier: String, width: Double, height: Double, mime: String, size: Double, bucketId: Double?, realPath: String?, parentFolderName: String?, creationDate: Double?, crop: Bool?, path: String, type: ResultType, duration: Double?, thumbnail: String?, fileName: String?) {
+  init(localIdentifier: String, width: Double, height: Double, mime: String, size: Double, bucketId: Double?, realPath: String?, parentFolderName: String?, creationDate: Double?, crop: Bool?, isOriginal: Bool?, path: String, type: ResultType, duration: Double?, thumbnail: String?, fileName: String?) {
     self.init(std.string(localIdentifier), width, height, std.string(mime), size, { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = bucketId {
         return bridge.create_std__optional_double_(__unwrappedValue)
@@ -45,6 +45,12 @@ public extension PickerResult {
       }
     }(), { () -> bridge.std__optional_bool_ in
       if let __unwrappedValue = crop {
+        return bridge.create_std__optional_bool_(__unwrappedValue)
+      } else {
+        return .init()
+      }
+    }(), { () -> bridge.std__optional_bool_ in
+      if let __unwrappedValue = isOriginal {
         return bridge.create_std__optional_bool_(__unwrappedValue)
       } else {
         return .init()
@@ -146,7 +152,8 @@ public extension PickerResult {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__realPath.value {
+        if bridge.has_value_std__optional_std__string_(self.__realPath) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__realPath)
           return String(__unwrapped)
         } else {
           return nil
@@ -169,7 +176,8 @@ public extension PickerResult {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__parentFolderName.value {
+        if bridge.has_value_std__optional_std__string_(self.__parentFolderName) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__parentFolderName)
           return String(__unwrapped)
         } else {
           return nil
@@ -222,6 +230,23 @@ public extension PickerResult {
     }
   }
   
+  var isOriginal: Bool? {
+    @inline(__always)
+    get {
+      return self.__isOriginal.value
+    }
+    @inline(__always)
+    set {
+      self.__isOriginal = { () -> bridge.std__optional_bool_ in
+        if let __unwrappedValue = newValue {
+          return bridge.create_std__optional_bool_(__unwrappedValue)
+        } else {
+          return .init()
+        }
+      }()
+    }
+  }
+  
   var path: String {
     @inline(__always)
     get {
@@ -265,7 +290,8 @@ public extension PickerResult {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__thumbnail.value {
+        if bridge.has_value_std__optional_std__string_(self.__thumbnail) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__thumbnail)
           return String(__unwrapped)
         } else {
           return nil
@@ -288,7 +314,8 @@ public extension PickerResult {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__fileName.value {
+        if bridge.has_value_std__optional_std__string_(self.__fileName) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__fileName)
           return String(__unwrapped)
         } else {
           return nil

@@ -31,9 +31,9 @@ namespace margelo::nitro::multipleimagepicker { struct NitroCameraConfig; }
 namespace margelo::nitro::multipleimagepicker { struct CameraResult; }
 
 #include "NitroConfig.hpp"
-#include <functional>
-#include <vector>
 #include "PickerResult.hpp"
+#include <vector>
+#include <functional>
 #include <string>
 #include "NitroCropConfig.hpp"
 #include "CropResult.hpp"
@@ -65,7 +65,7 @@ namespace margelo::nitro::multipleimagepicker {
       explicit HybridMultipleImagePickerSpec(): HybridObject(TAG) { }
 
       // Destructor
-      virtual ~HybridMultipleImagePickerSpec() { }
+      ~HybridMultipleImagePickerSpec() override = default;
 
     public:
       // Properties

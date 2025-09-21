@@ -29,6 +29,7 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based struct to the C++ struct Text by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     Text toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldFinish = clazz->getField<jni::JString>("finish");

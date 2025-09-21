@@ -37,24 +37,22 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ Theme <> JS Theme (union)
   template <>
-  struct JSIConverter<Theme> {
-    static inline Theme fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::Theme> final {
+    static inline margelo::nitro::multipleimagepicker::Theme fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("light"): return Theme::LIGHT;
-        case hashString("dark"): return Theme::DARK;
+        case hashString("light"): return margelo::nitro::multipleimagepicker::Theme::LIGHT;
+        case hashString("dark"): return margelo::nitro::multipleimagepicker::Theme::DARK;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum Theme - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, Theme arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::Theme arg) {
       switch (arg) {
-        case Theme::LIGHT: return JSIConverter<std::string>::toJSI(runtime, "light");
-        case Theme::DARK: return JSIConverter<std::string>::toJSI(runtime, "dark");
+        case margelo::nitro::multipleimagepicker::Theme::LIGHT: return JSIConverter<std::string>::toJSI(runtime, "light");
+        case margelo::nitro::multipleimagepicker::Theme::DARK: return JSIConverter<std::string>::toJSI(runtime, "dark");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert Theme to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

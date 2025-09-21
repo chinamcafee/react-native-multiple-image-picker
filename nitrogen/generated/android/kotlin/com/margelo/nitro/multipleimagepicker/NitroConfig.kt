@@ -11,36 +11,94 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "NitroConfig".
  */
 @DoNotStrip
 @Keep
-data class NitroConfig(
-  val mediaType: MediaType,
-  val selectedAssets: Array<PickerResult>,
-  val selectBoxStyle: SelectBoxStyle,
-  val selectMode: SelectMode,
-  val numberOfColumn: Double?,
-  val isPreview: Boolean?,
-  val primaryColor: Double?,
-  val allowSwipeToSelect: Boolean?,
-  val spacing: Double?,
-  val isHiddenPreviewButton: Boolean?,
-  val isHiddenOriginalButton: Boolean?,
-  val isShowPreviewList: Boolean?,
-  val allowHapticTouchPreview: Boolean?,
-  val allowedLimit: Boolean?,
-  val maxVideo: Double?,
-  val maxSelect: Double?,
-  val maxVideoDuration: Double?,
-  val minVideoDuration: Double?,
-  val maxFileSize: Double?,
-  val backgroundDark: Double?,
-  val crop: PickerCropConfig?,
-  val text: Text?,
-  val language: Language,
-  val theme: Theme,
-  val presentation: Presentation,
-  val camera: PickerCameraConfig?
-)
+data class NitroConfig
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val mediaType: MediaType,
+    @DoNotStrip
+    @Keep
+    val selectedAssets: Array<PickerResult>,
+    @DoNotStrip
+    @Keep
+    val selectBoxStyle: SelectBoxStyle,
+    @DoNotStrip
+    @Keep
+    val selectMode: SelectMode,
+    @DoNotStrip
+    @Keep
+    val numberOfColumn: Double?,
+    @DoNotStrip
+    @Keep
+    val isPreview: Boolean?,
+    @DoNotStrip
+    @Keep
+    val primaryColor: Double?,
+    @DoNotStrip
+    @Keep
+    val allowSwipeToSelect: Boolean?,
+    @DoNotStrip
+    @Keep
+    val spacing: Double?,
+    @DoNotStrip
+    @Keep
+    val isHiddenPreviewButton: Boolean?,
+    @DoNotStrip
+    @Keep
+    val isHiddenOriginalButton: Boolean?,
+    @DoNotStrip
+    @Keep
+    val isShowPreviewList: Boolean?,
+    @DoNotStrip
+    @Keep
+    val allowHapticTouchPreview: Boolean?,
+    @DoNotStrip
+    @Keep
+    val allowedLimit: Boolean?,
+    @DoNotStrip
+    @Keep
+    val maxVideo: Double?,
+    @DoNotStrip
+    @Keep
+    val maxSelect: Double?,
+    @DoNotStrip
+    @Keep
+    val maxVideoDuration: Double?,
+    @DoNotStrip
+    @Keep
+    val minVideoDuration: Double?,
+    @DoNotStrip
+    @Keep
+    val maxFileSize: Double?,
+    @DoNotStrip
+    @Keep
+    val backgroundDark: Double?,
+    @DoNotStrip
+    @Keep
+    val crop: PickerCropConfig?,
+    @DoNotStrip
+    @Keep
+    val text: Text?,
+    @DoNotStrip
+    @Keep
+    val language: Language,
+    @DoNotStrip
+    @Keep
+    val theme: Theme,
+    @DoNotStrip
+    @Keep
+    val presentation: Presentation,
+    @DoNotStrip
+    @Keep
+    val camera: PickerCameraConfig?
+  ) {
+  /* main constructor */
+}

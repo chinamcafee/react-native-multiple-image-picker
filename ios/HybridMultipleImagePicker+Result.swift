@@ -9,7 +9,7 @@ import HXPhotoPicker
 // import Photos
 
 extension HybridMultipleImagePicker {
-    func getResult(_ asset: PhotoAsset) async throws -> PickerResult {
+    func getResult(_ asset: PhotoAsset, isOriginal: Bool) async throws -> PickerResult {
         let urlResult = try await asset.urlResult()
         let url = urlResult.url
 
@@ -28,10 +28,11 @@ extension HybridMultipleImagePicker {
                             mime: mime,
                             size: Double(asset.fileSize),
                             bucketId: nil,
-                            realPath: nil,
+                            realPath: "file://\(url.absoluteString)",
                             parentFolderName: nil,
                             creationDate: creationDate > 0 ? Double(creationDate) : nil,
                             crop: false,
+                            isOriginal: isOriginal,
                             path: "file://\(url.absoluteString)",
                             type: type,
                             duration: asset.videoDuration,

@@ -24,7 +24,7 @@
   HybridObjectRegistry::registerHybridObjectConstructor(
     "MultipleImagePicker",
     []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<margelo::nitro::multipleimagepicker::HybridMultipleImagePickerSpec> hybridObject = MultipleImagePicker::MultipleImagePickerAutolinking::createMultipleImagePicker();
+      std::shared_ptr<HybridMultipleImagePickerSpec> hybridObject = MultipleImagePicker::MultipleImagePickerAutolinking::createMultipleImagePicker();
       return hybridObject;
     }
   );

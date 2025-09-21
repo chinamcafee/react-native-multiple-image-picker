@@ -32,8 +32,8 @@ namespace margelo::nitro::multipleimagepicker { enum class CameraDevice; }
 #include "MediaType.hpp"
 #include "Presentation.hpp"
 #include "Language.hpp"
-#include <optional>
 #include "PickerCropConfig.hpp"
+#include <optional>
 #include "CameraDevice.hpp"
 
 namespace margelo::nitro::multipleimagepicker {
@@ -53,6 +53,7 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<double> videoMaximumDuration     SWIFT_PRIVATE;
 
   public:
+    NitroCameraConfig() = default;
     explicit NitroCameraConfig(MediaType mediaType, Presentation presentation, Language language, std::optional<PickerCropConfig> crop, std::optional<bool> isSaveSystemAlbum, std::optional<double> color, std::optional<CameraDevice> cameraDevice, std::optional<double> videoMaximumDuration): mediaType(mediaType), presentation(presentation), language(language), crop(crop), isSaveSystemAlbum(isSaveSystemAlbum), color(color), cameraDevice(cameraDevice), videoMaximumDuration(videoMaximumDuration) {}
   };
 
@@ -60,33 +61,31 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ NitroCameraConfig <> JS NitroCameraConfig (object)
   template <>
-  struct JSIConverter<NitroCameraConfig> {
-    static inline NitroCameraConfig fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::NitroCameraConfig> final {
+    static inline margelo::nitro::multipleimagepicker::NitroCameraConfig fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return NitroCameraConfig(
-        JSIConverter<MediaType>::fromJSI(runtime, obj.getProperty(runtime, "mediaType")),
-        JSIConverter<Presentation>::fromJSI(runtime, obj.getProperty(runtime, "presentation")),
-        JSIConverter<Language>::fromJSI(runtime, obj.getProperty(runtime, "language")),
-        JSIConverter<std::optional<PickerCropConfig>>::fromJSI(runtime, obj.getProperty(runtime, "crop")),
+      return margelo::nitro::multipleimagepicker::NitroCameraConfig(
+        JSIConverter<margelo::nitro::multipleimagepicker::MediaType>::fromJSI(runtime, obj.getProperty(runtime, "mediaType")),
+        JSIConverter<margelo::nitro::multipleimagepicker::Presentation>::fromJSI(runtime, obj.getProperty(runtime, "presentation")),
+        JSIConverter<margelo::nitro::multipleimagepicker::Language>::fromJSI(runtime, obj.getProperty(runtime, "language")),
+        JSIConverter<std::optional<margelo::nitro::multipleimagepicker::PickerCropConfig>>::fromJSI(runtime, obj.getProperty(runtime, "crop")),
         JSIConverter<std::optional<bool>>::fromJSI(runtime, obj.getProperty(runtime, "isSaveSystemAlbum")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "color")),
-        JSIConverter<std::optional<CameraDevice>>::fromJSI(runtime, obj.getProperty(runtime, "cameraDevice")),
+        JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CameraDevice>>::fromJSI(runtime, obj.getProperty(runtime, "cameraDevice")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "videoMaximumDuration"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const NitroCameraConfig& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::NitroCameraConfig& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, "mediaType", JSIConverter<MediaType>::toJSI(runtime, arg.mediaType));
-      obj.setProperty(runtime, "presentation", JSIConverter<Presentation>::toJSI(runtime, arg.presentation));
-      obj.setProperty(runtime, "language", JSIConverter<Language>::toJSI(runtime, arg.language));
-      obj.setProperty(runtime, "crop", JSIConverter<std::optional<PickerCropConfig>>::toJSI(runtime, arg.crop));
+      obj.setProperty(runtime, "mediaType", JSIConverter<margelo::nitro::multipleimagepicker::MediaType>::toJSI(runtime, arg.mediaType));
+      obj.setProperty(runtime, "presentation", JSIConverter<margelo::nitro::multipleimagepicker::Presentation>::toJSI(runtime, arg.presentation));
+      obj.setProperty(runtime, "language", JSIConverter<margelo::nitro::multipleimagepicker::Language>::toJSI(runtime, arg.language));
+      obj.setProperty(runtime, "crop", JSIConverter<std::optional<margelo::nitro::multipleimagepicker::PickerCropConfig>>::toJSI(runtime, arg.crop));
       obj.setProperty(runtime, "isSaveSystemAlbum", JSIConverter<std::optional<bool>>::toJSI(runtime, arg.isSaveSystemAlbum));
       obj.setProperty(runtime, "color", JSIConverter<std::optional<double>>::toJSI(runtime, arg.color));
-      obj.setProperty(runtime, "cameraDevice", JSIConverter<std::optional<CameraDevice>>::toJSI(runtime, arg.cameraDevice));
+      obj.setProperty(runtime, "cameraDevice", JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CameraDevice>>::toJSI(runtime, arg.cameraDevice));
       obj.setProperty(runtime, "videoMaximumDuration", JSIConverter<std::optional<double>>::toJSI(runtime, arg.videoMaximumDuration));
       return obj;
     }
@@ -95,13 +94,13 @@ namespace margelo::nitro {
         return false;
       }
       jsi::Object obj = value.getObject(runtime);
-      if (!JSIConverter<MediaType>::canConvert(runtime, obj.getProperty(runtime, "mediaType"))) return false;
-      if (!JSIConverter<Presentation>::canConvert(runtime, obj.getProperty(runtime, "presentation"))) return false;
-      if (!JSIConverter<Language>::canConvert(runtime, obj.getProperty(runtime, "language"))) return false;
-      if (!JSIConverter<std::optional<PickerCropConfig>>::canConvert(runtime, obj.getProperty(runtime, "crop"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::MediaType>::canConvert(runtime, obj.getProperty(runtime, "mediaType"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::Presentation>::canConvert(runtime, obj.getProperty(runtime, "presentation"))) return false;
+      if (!JSIConverter<margelo::nitro::multipleimagepicker::Language>::canConvert(runtime, obj.getProperty(runtime, "language"))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::multipleimagepicker::PickerCropConfig>>::canConvert(runtime, obj.getProperty(runtime, "crop"))) return false;
       if (!JSIConverter<std::optional<bool>>::canConvert(runtime, obj.getProperty(runtime, "isSaveSystemAlbum"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "color"))) return false;
-      if (!JSIConverter<std::optional<CameraDevice>>::canConvert(runtime, obj.getProperty(runtime, "cameraDevice"))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CameraDevice>>::canConvert(runtime, obj.getProperty(runtime, "cameraDevice"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "videoMaximumDuration"))) return false;
       return true;
     }

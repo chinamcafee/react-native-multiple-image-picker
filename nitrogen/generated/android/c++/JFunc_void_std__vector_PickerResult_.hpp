@@ -10,9 +10,9 @@
 #include <fbjni/fbjni.h>
 #include <functional>
 
-#include <functional>
-#include <vector>
 #include "PickerResult.hpp"
+#include <vector>
+#include <functional>
 #include "JPickerResult.hpp"
 #include <string>
 #include <optional>
@@ -24,17 +24,45 @@ namespace margelo::nitro::multipleimagepicker {
   using namespace facebook;
 
   /**
-   * C++ representation of the callback Func_void_std__vector_PickerResult_.
-   * This is a Kotlin `(result: Array<PickerResult>) -> Unit`, backed by a `std::function<...>`.
+   * Represents the Java/Kotlin callback `(result: Array<PickerResult>) -> Unit`.
+   * This can be passed around between C++ and Java/Kotlin.
    */
-  struct JFunc_void_std__vector_PickerResult_ final: public jni::HybridClass<JFunc_void_std__vector_PickerResult_> {
+  struct JFunc_void_std__vector_PickerResult_: public jni::JavaClass<JFunc_void_std__vector_PickerResult_> {
+  public:
+    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_std__vector_PickerResult_;";
+
+  public:
+    /**
+     * Invokes the function this `JFunc_void_std__vector_PickerResult_` instance holds through JNI.
+     */
+    void invoke(const std::vector<PickerResult>& result) const {
+      static const auto method = javaClassStatic()->getMethod<void(jni::alias_ref<jni::JArrayClass<JPickerResult>> /* result */)>("invoke");
+      method(self(), [&]() {
+        size_t __size = result.size();
+        jni::local_ref<jni::JArrayClass<JPickerResult>> __array = jni::JArrayClass<JPickerResult>::newArray(__size);
+        for (size_t __i = 0; __i < __size; __i++) {
+          const auto& __element = result[__i];
+          __array->setElement(__i, *JPickerResult::fromCpp(__element));
+        }
+        return __array;
+      }());
+    }
+  };
+
+  /**
+   * An implementation of Func_void_std__vector_PickerResult_ that is backed by a C++ implementation (using `std::function<...>`)
+   */
+  struct JFunc_void_std__vector_PickerResult__cxx final: public jni::HybridClass<JFunc_void_std__vector_PickerResult__cxx, JFunc_void_std__vector_PickerResult_> {
   public:
     static jni::local_ref<JFunc_void_std__vector_PickerResult_::javaobject> fromCpp(const std::function<void(const std::vector<PickerResult>& /* result */)>& func) {
-      return JFunc_void_std__vector_PickerResult_::newObjectCxxArgs(func);
+      return JFunc_void_std__vector_PickerResult__cxx::newObjectCxxArgs(func);
     }
 
   public:
-    void call(jni::alias_ref<jni::JArrayClass<JPickerResult>> result) {
+    /**
+     * Invokes the C++ `std::function<...>` this `JFunc_void_std__vector_PickerResult__cxx` instance holds.
+     */
+    void invoke_cxx(jni::alias_ref<jni::JArrayClass<JPickerResult>> result) {
       _func([&]() {
               size_t __size = result->size();
               std::vector<PickerResult> __vector;
@@ -48,13 +76,19 @@ namespace margelo::nitro::multipleimagepicker {
     }
 
   public:
-    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_std__vector_PickerResult_;";
+    [[nodiscard]]
+    inline const std::function<void(const std::vector<PickerResult>& /* result */)>& getFunction() const {
+      return _func;
+    }
+
+  public:
+    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_std__vector_PickerResult__cxx;";
     static void registerNatives() {
-      registerHybrid({makeNativeMethod("call", JFunc_void_std__vector_PickerResult_::call)});
+      registerHybrid({makeNativeMethod("invoke_cxx", JFunc_void_std__vector_PickerResult__cxx::invoke_cxx)});
     }
 
   private:
-    explicit JFunc_void_std__vector_PickerResult_(const std::function<void(const std::vector<PickerResult>& /* result */)>& func): _func(func) { }
+    explicit JFunc_void_std__vector_PickerResult__cxx(const std::function<void(const std::vector<PickerResult>& /* result */)>& func): _func(func) { }
 
   private:
     friend HybridBase;

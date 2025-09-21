@@ -11,12 +11,22 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "PickerCameraConfig".
  */
 @DoNotStrip
 @Keep
-data class PickerCameraConfig(
-  val cameraDevice: CameraDevice?,
-  val videoMaximumDuration: Double?
-)
+data class PickerCameraConfig
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val cameraDevice: CameraDevice?,
+    @DoNotStrip
+    @Keep
+    val videoMaximumDuration: Double?
+  ) {
+  /* main constructor */
+}

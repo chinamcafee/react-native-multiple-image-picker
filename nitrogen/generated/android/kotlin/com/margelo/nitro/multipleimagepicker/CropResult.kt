@@ -11,13 +11,25 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "CropResult".
  */
 @DoNotStrip
 @Keep
-data class CropResult(
-  val path: String,
-  val width: Double,
-  val height: Double
-)
+data class CropResult
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val path: String,
+    @DoNotStrip
+    @Keep
+    val width: Double,
+    @DoNotStrip
+    @Keep
+    val height: Double
+  ) {
+  /* main constructor */
+}

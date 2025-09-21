@@ -32,7 +32,8 @@ public extension CropRatio {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__title.value {
+        if bridge.has_value_std__optional_std__string_(self.__title) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__title)
           return String(__unwrapped)
         } else {
           return nil

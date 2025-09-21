@@ -37,24 +37,22 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ SelectBoxStyle <> JS SelectBoxStyle (union)
   template <>
-  struct JSIConverter<SelectBoxStyle> {
-    static inline SelectBoxStyle fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::SelectBoxStyle> final {
+    static inline margelo::nitro::multipleimagepicker::SelectBoxStyle fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("number"): return SelectBoxStyle::NUMBER;
-        case hashString("tick"): return SelectBoxStyle::TICK;
+        case hashString("number"): return margelo::nitro::multipleimagepicker::SelectBoxStyle::NUMBER;
+        case hashString("tick"): return margelo::nitro::multipleimagepicker::SelectBoxStyle::TICK;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum SelectBoxStyle - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, SelectBoxStyle arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::SelectBoxStyle arg) {
       switch (arg) {
-        case SelectBoxStyle::NUMBER: return JSIConverter<std::string>::toJSI(runtime, "number");
-        case SelectBoxStyle::TICK: return JSIConverter<std::string>::toJSI(runtime, "tick");
+        case margelo::nitro::multipleimagepicker::SelectBoxStyle::NUMBER: return JSIConverter<std::string>::toJSI(runtime, "number");
+        case margelo::nitro::multipleimagepicker::SelectBoxStyle::TICK: return JSIConverter<std::string>::toJSI(runtime, "tick");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert SelectBoxStyle to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

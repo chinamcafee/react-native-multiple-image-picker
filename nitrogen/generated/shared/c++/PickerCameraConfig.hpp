@@ -21,8 +21,8 @@
 // Forward declaration of `CameraDevice` to properly resolve imports.
 namespace margelo::nitro::multipleimagepicker { enum class CameraDevice; }
 
-#include <optional>
 #include "CameraDevice.hpp"
+#include <optional>
 
 namespace margelo::nitro::multipleimagepicker {
 
@@ -35,6 +35,7 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<double> videoMaximumDuration     SWIFT_PRIVATE;
 
   public:
+    PickerCameraConfig() = default;
     explicit PickerCameraConfig(std::optional<CameraDevice> cameraDevice, std::optional<double> videoMaximumDuration): cameraDevice(cameraDevice), videoMaximumDuration(videoMaximumDuration) {}
   };
 
@@ -42,21 +43,19 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ PickerCameraConfig <> JS PickerCameraConfig (object)
   template <>
-  struct JSIConverter<PickerCameraConfig> {
-    static inline PickerCameraConfig fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::PickerCameraConfig> final {
+    static inline margelo::nitro::multipleimagepicker::PickerCameraConfig fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return PickerCameraConfig(
-        JSIConverter<std::optional<CameraDevice>>::fromJSI(runtime, obj.getProperty(runtime, "cameraDevice")),
+      return margelo::nitro::multipleimagepicker::PickerCameraConfig(
+        JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CameraDevice>>::fromJSI(runtime, obj.getProperty(runtime, "cameraDevice")),
         JSIConverter<std::optional<double>>::fromJSI(runtime, obj.getProperty(runtime, "videoMaximumDuration"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const PickerCameraConfig& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::PickerCameraConfig& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, "cameraDevice", JSIConverter<std::optional<CameraDevice>>::toJSI(runtime, arg.cameraDevice));
+      obj.setProperty(runtime, "cameraDevice", JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CameraDevice>>::toJSI(runtime, arg.cameraDevice));
       obj.setProperty(runtime, "videoMaximumDuration", JSIConverter<std::optional<double>>::toJSI(runtime, arg.videoMaximumDuration));
       return obj;
     }
@@ -65,7 +64,7 @@ namespace margelo::nitro {
         return false;
       }
       jsi::Object obj = value.getObject(runtime);
-      if (!JSIConverter<std::optional<CameraDevice>>::canConvert(runtime, obj.getProperty(runtime, "cameraDevice"))) return false;
+      if (!JSIConverter<std::optional<margelo::nitro::multipleimagepicker::CameraDevice>>::canConvert(runtime, obj.getProperty(runtime, "cameraDevice"))) return false;
       if (!JSIConverter<std::optional<double>>::canConvert(runtime, obj.getProperty(runtime, "videoMaximumDuration"))) return false;
       return true;
     }

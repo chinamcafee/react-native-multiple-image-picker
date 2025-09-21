@@ -122,8 +122,11 @@ export default function App() {
         ...options,
         selectedAssets: images.filter((item) => item.localIdentifier),
       })
-
-      setImages(Array.isArray(response) ? response : [response])
+      console.log('response is: ', response)
+      // Ensure response is always an array
+      const responseArray = Array.isArray(response) ? response : [response]
+      setImages(responseArray)
+      console.log('setImages:  Finished')
       layoutEffect()
     } catch (e) {
       console.log('e: ', e)
@@ -212,7 +215,7 @@ export default function App() {
           >
             {images.length > 0 ? (
               <>
-                <ImageGrid
+                {/* <ImageGrid
                   dataImage={images}
                   onPressImage={onPressImage}
                   width={WIDTH - 6}
@@ -222,7 +225,8 @@ export default function App() {
                   videoURLKey={'thumbnail'}
                   showDelete
                   onDeleteImage={onRemovePhoto}
-                />
+                /> */}
+                <Image source={{ uri: images[0].path }} style={style.plusSign} />
                 <Button style={style.buttonOpen} onPress={onCrop}>
                   Open Cropping
                 </Button>
@@ -673,8 +677,8 @@ const style = StyleSheet.create({
     borderRadius: 8,
   },
   plusSign: {
-    width: 16,
-    height: 16,
+    width: 200,
+    height: 200,
   },
   section: {
     rowGap: 12,

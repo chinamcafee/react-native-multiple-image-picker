@@ -10,8 +10,8 @@
 #include <fbjni/fbjni.h>
 #include <functional>
 
-#include <functional>
 #include "CameraResult.hpp"
+#include <functional>
 #include "JCameraResult.hpp"
 #include <string>
 #include "ResultType.hpp"
@@ -23,28 +23,54 @@ namespace margelo::nitro::multipleimagepicker {
   using namespace facebook;
 
   /**
-   * C++ representation of the callback Func_void_CameraResult.
-   * This is a Kotlin `(result: CameraResult) -> Unit`, backed by a `std::function<...>`.
+   * Represents the Java/Kotlin callback `(result: CameraResult) -> Unit`.
+   * This can be passed around between C++ and Java/Kotlin.
    */
-  struct JFunc_void_CameraResult final: public jni::HybridClass<JFunc_void_CameraResult> {
+  struct JFunc_void_CameraResult: public jni::JavaClass<JFunc_void_CameraResult> {
+  public:
+    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_CameraResult;";
+
+  public:
+    /**
+     * Invokes the function this `JFunc_void_CameraResult` instance holds through JNI.
+     */
+    void invoke(const CameraResult& result) const {
+      static const auto method = javaClassStatic()->getMethod<void(jni::alias_ref<JCameraResult> /* result */)>("invoke");
+      method(self(), JCameraResult::fromCpp(result));
+    }
+  };
+
+  /**
+   * An implementation of Func_void_CameraResult that is backed by a C++ implementation (using `std::function<...>`)
+   */
+  struct JFunc_void_CameraResult_cxx final: public jni::HybridClass<JFunc_void_CameraResult_cxx, JFunc_void_CameraResult> {
   public:
     static jni::local_ref<JFunc_void_CameraResult::javaobject> fromCpp(const std::function<void(const CameraResult& /* result */)>& func) {
-      return JFunc_void_CameraResult::newObjectCxxArgs(func);
+      return JFunc_void_CameraResult_cxx::newObjectCxxArgs(func);
     }
 
   public:
-    void call(jni::alias_ref<JCameraResult> result) {
+    /**
+     * Invokes the C++ `std::function<...>` this `JFunc_void_CameraResult_cxx` instance holds.
+     */
+    void invoke_cxx(jni::alias_ref<JCameraResult> result) {
       _func(result->toCpp());
     }
 
   public:
-    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_CameraResult;";
+    [[nodiscard]]
+    inline const std::function<void(const CameraResult& /* result */)>& getFunction() const {
+      return _func;
+    }
+
+  public:
+    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_CameraResult_cxx;";
     static void registerNatives() {
-      registerHybrid({makeNativeMethod("call", JFunc_void_CameraResult::call)});
+      registerHybrid({makeNativeMethod("invoke_cxx", JFunc_void_CameraResult_cxx::invoke_cxx)});
     }
 
   private:
-    explicit JFunc_void_CameraResult(const std::function<void(const CameraResult& /* result */)>& func): _func(func) { }
+    explicit JFunc_void_CameraResult_cxx(const std::function<void(const CameraResult& /* result */)>& func): _func(func) { }
 
   private:
     friend HybridBase;

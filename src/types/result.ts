@@ -150,4 +150,10 @@ export interface PickerResult extends BaseResult {
    * Used to track image modifications
    */
   crop?: boolean
+
+  /**
+   * Indicates if the media is the original media
+   * Used to track if the media is the original media
+   */
+  isOriginal?: boolean
 }

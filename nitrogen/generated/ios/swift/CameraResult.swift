@@ -129,7 +129,8 @@ public extension CameraResult {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__thumbnail.value {
+        if bridge.has_value_std__optional_std__string_(self.__thumbnail) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__thumbnail)
           return String(__unwrapped)
         } else {
           return nil
@@ -152,7 +153,8 @@ public extension CameraResult {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__fileName.value {
+        if bridge.has_value_std__optional_std__string_(self.__fileName) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__fileName)
           return String(__unwrapped)
         } else {
           return nil

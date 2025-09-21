@@ -37,24 +37,22 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ ResultType <> JS ResultType (union)
   template <>
-  struct JSIConverter<ResultType> {
-    static inline ResultType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::ResultType> final {
+    static inline margelo::nitro::multipleimagepicker::ResultType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("video"): return ResultType::VIDEO;
-        case hashString("image"): return ResultType::IMAGE;
+        case hashString("video"): return margelo::nitro::multipleimagepicker::ResultType::VIDEO;
+        case hashString("image"): return margelo::nitro::multipleimagepicker::ResultType::IMAGE;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum ResultType - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, ResultType arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::ResultType arg) {
       switch (arg) {
-        case ResultType::VIDEO: return JSIConverter<std::string>::toJSI(runtime, "video");
-        case ResultType::IMAGE: return JSIConverter<std::string>::toJSI(runtime, "image");
+        case margelo::nitro::multipleimagepicker::ResultType::VIDEO: return JSIConverter<std::string>::toJSI(runtime, "video");
+        case margelo::nitro::multipleimagepicker::ResultType::IMAGE: return JSIConverter<std::string>::toJSI(runtime, "image");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert ResultType to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

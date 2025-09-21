@@ -37,24 +37,22 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ Presentation <> JS Presentation (union)
   template <>
-  struct JSIConverter<Presentation> {
-    static inline Presentation fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::Presentation> final {
+    static inline margelo::nitro::multipleimagepicker::Presentation fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("fullScreenModal"): return Presentation::FULLSCREENMODAL;
-        case hashString("formSheet"): return Presentation::FORMSHEET;
+        case hashString("fullScreenModal"): return margelo::nitro::multipleimagepicker::Presentation::FULLSCREENMODAL;
+        case hashString("formSheet"): return margelo::nitro::multipleimagepicker::Presentation::FORMSHEET;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum Presentation - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, Presentation arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::Presentation arg) {
       switch (arg) {
-        case Presentation::FULLSCREENMODAL: return JSIConverter<std::string>::toJSI(runtime, "fullScreenModal");
-        case Presentation::FORMSHEET: return JSIConverter<std::string>::toJSI(runtime, "formSheet");
+        case margelo::nitro::multipleimagepicker::Presentation::FULLSCREENMODAL: return JSIConverter<std::string>::toJSI(runtime, "fullScreenModal");
+        case margelo::nitro::multipleimagepicker::Presentation::FORMSHEET: return JSIConverter<std::string>::toJSI(runtime, "formSheet");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert Presentation to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

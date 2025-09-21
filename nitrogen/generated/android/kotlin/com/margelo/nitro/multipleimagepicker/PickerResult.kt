@@ -11,25 +11,64 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "PickerResult".
  */
 @DoNotStrip
 @Keep
-data class PickerResult(
-  val localIdentifier: String,
-  val width: Double,
-  val height: Double,
-  val mime: String,
-  val size: Double,
-  val bucketId: Double?,
-  val realPath: String?,
-  val parentFolderName: String?,
-  val creationDate: Double?,
-  val crop: Boolean?,
-  val path: String,
-  val type: ResultType,
-  val duration: Double?,
-  val thumbnail: String?,
-  val fileName: String?
-)
+data class PickerResult
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val localIdentifier: String,
+    @DoNotStrip
+    @Keep
+    val width: Double,
+    @DoNotStrip
+    @Keep
+    val height: Double,
+    @DoNotStrip
+    @Keep
+    val mime: String,
+    @DoNotStrip
+    @Keep
+    val size: Double,
+    @DoNotStrip
+    @Keep
+    val bucketId: Double?,
+    @DoNotStrip
+    @Keep
+    val realPath: String?,
+    @DoNotStrip
+    @Keep
+    val parentFolderName: String?,
+    @DoNotStrip
+    @Keep
+    val creationDate: Double?,
+    @DoNotStrip
+    @Keep
+    val crop: Boolean?,
+    @DoNotStrip
+    @Keep
+    val isOriginal: Boolean?,
+    @DoNotStrip
+    @Keep
+    val path: String,
+    @DoNotStrip
+    @Keep
+    val type: ResultType,
+    @DoNotStrip
+    @Keep
+    val duration: Double?,
+    @DoNotStrip
+    @Keep
+    val thumbnail: String?,
+    @DoNotStrip
+    @Keep
+    val fileName: String?
+  ) {
+  /* main constructor */
+}

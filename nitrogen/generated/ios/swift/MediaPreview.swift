@@ -55,7 +55,8 @@ public extension MediaPreview {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__path.value {
+        if bridge.has_value_std__optional_std__string_(self.__path) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__path)
           return String(__unwrapped)
         } else {
           return nil
@@ -78,7 +79,8 @@ public extension MediaPreview {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__thumbnail.value {
+        if bridge.has_value_std__optional_std__string_(self.__thumbnail) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__thumbnail)
           return String(__unwrapped)
         } else {
           return nil
@@ -101,7 +103,8 @@ public extension MediaPreview {
     @inline(__always)
     get {
       return { () -> String? in
-        if let __unwrapped = self.__localIdentifier.value {
+        if bridge.has_value_std__optional_std__string_(self.__localIdentifier) {
+          let __unwrapped = bridge.get_std__optional_std__string_(self.__localIdentifier)
           return String(__unwrapped)
         } else {
           return nil

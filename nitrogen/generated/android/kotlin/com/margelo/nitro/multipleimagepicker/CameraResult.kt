@@ -11,17 +11,37 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "CameraResult".
  */
 @DoNotStrip
 @Keep
-data class CameraResult(
-  val path: String,
-  val type: ResultType,
-  val width: Double?,
-  val height: Double?,
-  val duration: Double?,
-  val thumbnail: String?,
-  val fileName: String?
-)
+data class CameraResult
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val path: String,
+    @DoNotStrip
+    @Keep
+    val type: ResultType,
+    @DoNotStrip
+    @Keep
+    val width: Double?,
+    @DoNotStrip
+    @Keep
+    val height: Double?,
+    @DoNotStrip
+    @Keep
+    val duration: Double?,
+    @DoNotStrip
+    @Keep
+    val thumbnail: String?,
+    @DoNotStrip
+    @Keep
+    val fileName: String?
+  ) {
+  /* main constructor */
+}

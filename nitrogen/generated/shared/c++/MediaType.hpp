@@ -38,26 +38,24 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ MediaType <> JS MediaType (union)
   template <>
-  struct JSIConverter<MediaType> {
-    static inline MediaType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::MediaType> final {
+    static inline margelo::nitro::multipleimagepicker::MediaType fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("video"): return MediaType::VIDEO;
-        case hashString("image"): return MediaType::IMAGE;
-        case hashString("all"): return MediaType::ALL;
+        case hashString("video"): return margelo::nitro::multipleimagepicker::MediaType::VIDEO;
+        case hashString("image"): return margelo::nitro::multipleimagepicker::MediaType::IMAGE;
+        case hashString("all"): return margelo::nitro::multipleimagepicker::MediaType::ALL;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum MediaType - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, MediaType arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::MediaType arg) {
       switch (arg) {
-        case MediaType::VIDEO: return JSIConverter<std::string>::toJSI(runtime, "video");
-        case MediaType::IMAGE: return JSIConverter<std::string>::toJSI(runtime, "image");
-        case MediaType::ALL: return JSIConverter<std::string>::toJSI(runtime, "all");
+        case margelo::nitro::multipleimagepicker::MediaType::VIDEO: return JSIConverter<std::string>::toJSI(runtime, "video");
+        case margelo::nitro::multipleimagepicker::MediaType::IMAGE: return JSIConverter<std::string>::toJSI(runtime, "image");
+        case margelo::nitro::multipleimagepicker::MediaType::ALL: return JSIConverter<std::string>::toJSI(runtime, "all");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert MediaType to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

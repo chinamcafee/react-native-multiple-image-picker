@@ -468,7 +468,8 @@ public extension NitroConfig {
     @inline(__always)
     get {
       return { () -> PickerCropConfig? in
-        if let __unwrapped = self.__crop.value {
+        if bridge.has_value_std__optional_PickerCropConfig_(self.__crop) {
+          let __unwrapped = bridge.get_std__optional_PickerCropConfig_(self.__crop)
           return __unwrapped
         } else {
           return nil
@@ -491,7 +492,8 @@ public extension NitroConfig {
     @inline(__always)
     get {
       return { () -> Text? in
-        if let __unwrapped = self.__text.value {
+        if bridge.has_value_std__optional_Text_(self.__text) {
+          let __unwrapped = bridge.get_std__optional_Text_(self.__text)
           return __unwrapped
         } else {
           return nil
@@ -547,7 +549,8 @@ public extension NitroConfig {
     @inline(__always)
     get {
       return { () -> PickerCameraConfig? in
-        if let __unwrapped = self.__camera.value {
+        if bridge.has_value_std__optional_PickerCameraConfig_(self.__camera) {
+          let __unwrapped = bridge.get_std__optional_PickerCameraConfig_(self.__camera)
           return __unwrapped
         } else {
           return nil

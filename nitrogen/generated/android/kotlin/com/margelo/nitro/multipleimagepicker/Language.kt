@@ -15,22 +15,18 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class Language {
-  SYSTEM,
-  ZH_HANS,
-  ZH_HANT,
-  JA,
-  KO,
-  EN,
-  TH,
-  ID,
-  VI,
-  RU,
-  DE,
-  FR,
-  AR;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class Language(@DoNotStrip @Keep val value: Int) {
+  SYSTEM(0),
+  ZH_HANS(1),
+  ZH_HANT(2),
+  JA(3),
+  KO(4),
+  EN(5),
+  TH(6),
+  ID(7),
+  VI(8),
+  RU(9),
+  DE(10),
+  FR(11),
+  AR(12);
 }

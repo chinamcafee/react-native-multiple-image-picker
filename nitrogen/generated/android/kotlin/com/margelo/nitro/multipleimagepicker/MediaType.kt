@@ -15,12 +15,8 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class MediaType {
-  VIDEO,
-  IMAGE,
-  ALL;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class MediaType(@DoNotStrip @Keep val value: Int) {
+  VIDEO(0),
+  IMAGE(1),
+  ALL(2);
 }

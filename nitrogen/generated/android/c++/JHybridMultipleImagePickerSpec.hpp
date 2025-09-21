@@ -29,16 +29,18 @@ namespace margelo::nitro::multipleimagepicker {
     // C++ constructor (called from Java via `initHybrid()`)
     explicit JHybridMultipleImagePickerSpec(jni::alias_ref<jhybridobject> jThis) :
       HybridObject(HybridMultipleImagePickerSpec::TAG),
+      HybridBase(jThis),
       _javaPart(jni::make_global(jThis)) {}
 
   public:
-    virtual ~JHybridMultipleImagePickerSpec() {
+    ~JHybridMultipleImagePickerSpec() override {
       // Hermes GC can destroy JS objects on a non-JNI Thread.
       jni::ThreadScope::WithClassLoader([&] { _javaPart.reset(); });
     }
 
   public:
     size_t getExternalMemorySize() noexcept override;
+    void dispose() noexcept override;
 
   public:
     inline const jni::global_ref<JHybridMultipleImagePickerSpec::javaobject>& getJavaPart() const noexcept {

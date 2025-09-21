@@ -11,13 +11,25 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "CropRatio".
  */
 @DoNotStrip
 @Keep
-data class CropRatio(
-  val title: String?,
-  val width: Double,
-  val height: Double
-)
+data class CropRatio
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val title: String?,
+    @DoNotStrip
+    @Keep
+    val width: Double,
+    @DoNotStrip
+    @Keep
+    val height: Double
+  ) {
+  /* main constructor */
+}

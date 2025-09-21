@@ -41,7 +41,7 @@ class HybridMultipleImagePicker: HybridMultipleImagePickerSpec {
                             photoAsset.editedResult = .some(result)
 
                             Task {
-                                let resultData = try await self.getResult(photoAsset)
+                                let resultData = try await self.getResult(photoAsset, isOriginal: pickerResult.isOriginal)
 
                                 DispatchQueue.main.async {
                                     resolved([resultData])
@@ -69,7 +69,7 @@ class HybridMultipleImagePicker: HybridMultipleImagePickerSpec {
                     for response in pickerResult.photoAssets {
                         group.enter()
 
-                        let resultData = try await self.getResult(response)
+                        let resultData = try await self.getResult(response, isOriginal: pickerResult.isOriginal)
 
                         data.append(resultData)
                         group.leave()

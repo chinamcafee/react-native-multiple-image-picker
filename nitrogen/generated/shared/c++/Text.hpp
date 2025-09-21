@@ -20,8 +20,8 @@
 
 
 
-#include <optional>
 #include <string>
+#include <optional>
 
 namespace margelo::nitro::multipleimagepicker {
 
@@ -36,6 +36,7 @@ namespace margelo::nitro::multipleimagepicker {
     std::optional<std::string> edit     SWIFT_PRIVATE;
 
   public:
+    Text() = default;
     explicit Text(std::optional<std::string> finish, std::optional<std::string> original, std::optional<std::string> preview, std::optional<std::string> edit): finish(finish), original(original), preview(preview), edit(edit) {}
   };
 
@@ -43,21 +44,19 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ Text <> JS Text (object)
   template <>
-  struct JSIConverter<Text> {
-    static inline Text fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::Text> final {
+    static inline margelo::nitro::multipleimagepicker::Text fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return Text(
+      return margelo::nitro::multipleimagepicker::Text(
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "finish")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "original")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "preview")),
         JSIConverter<std::optional<std::string>>::fromJSI(runtime, obj.getProperty(runtime, "edit"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const Text& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::Text& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "finish", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.finish));
       obj.setProperty(runtime, "original", JSIConverter<std::optional<std::string>>::toJSI(runtime, arg.original));

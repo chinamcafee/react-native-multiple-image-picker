@@ -34,6 +34,7 @@ namespace margelo::nitro::multipleimagepicker {
     double height     SWIFT_PRIVATE;
 
   public:
+    CropResult() = default;
     explicit CropResult(std::string path, double width, double height): path(path), width(width), height(height) {}
   };
 
@@ -41,20 +42,18 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ CropResult <> JS CropResult (object)
   template <>
-  struct JSIConverter<CropResult> {
-    static inline CropResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::CropResult> final {
+    static inline margelo::nitro::multipleimagepicker::CropResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
-      return CropResult(
+      return margelo::nitro::multipleimagepicker::CropResult(
         JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, "path")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "width")),
         JSIConverter<double>::fromJSI(runtime, obj.getProperty(runtime, "height"))
       );
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, const CropResult& arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::multipleimagepicker::CropResult& arg) {
       jsi::Object obj(runtime);
       obj.setProperty(runtime, "path", JSIConverter<std::string>::toJSI(runtime, arg.path));
       obj.setProperty(runtime, "width", JSIConverter<double>::toJSI(runtime, arg.width));

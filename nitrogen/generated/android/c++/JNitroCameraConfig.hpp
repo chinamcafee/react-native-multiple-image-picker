@@ -42,6 +42,7 @@ namespace margelo::nitro::multipleimagepicker {
      * Convert this Java/Kotlin-based struct to the C++ struct NitroCameraConfig by copying all values to C++.
      */
     [[maybe_unused]]
+    [[nodiscard]]
     NitroCameraConfig toCpp() const {
       static const auto clazz = javaClassStatic();
       static const auto fieldMediaType = clazz->getField<JMediaType>("mediaType");

@@ -18,10 +18,12 @@ import com.luck.picture.lib.basic.PictureSelector
 import com.luck.picture.lib.config.PictureMimeType
 import com.luck.picture.lib.config.SelectMimeType
 import com.luck.picture.lib.config.SelectModeConfig
+import com.luck.picture.lib.engine.CompressFileEngine
 import com.luck.picture.lib.engine.PictureSelectorEngine
 import com.luck.picture.lib.entity.LocalMedia
 import com.luck.picture.lib.interfaces.OnCustomLoadingListener
 import com.luck.picture.lib.interfaces.OnExternalPreviewEventListener
+import com.luck.picture.lib.interfaces.OnKeyValueResultCallbackListener
 import com.luck.picture.lib.interfaces.OnMediaEditInterceptListener
 import com.luck.picture.lib.interfaces.OnResultCallbackListener
 import com.luck.picture.lib.language.LanguageConfig
@@ -39,6 +41,8 @@ import com.yalantis.ucrop.UCrop
 import com.yalantis.ucrop.UCrop.Options
 import com.yalantis.ucrop.UCrop.REQUEST_CROP
 import com.yalantis.ucrop.model.AspectRatio
+import top.zibin.luban.Luban
+import top.zibin.luban.OnNewCompressListener
 import java.io.File
 import java.net.HttpURLConnection
 import java.net.URL
@@ -385,6 +389,22 @@ class MultipleImagePickerImp(reactContext: ReactApplicationContext?) :
             .isQuickCapture(true)
             .isOriginalControl(true)
             .setVideoThumbnailListener(VideoThumbnailEngine(getVideoThumbnailDir()))
+            .setCompressEngine(CompressFileEngine { context, source, call ->
+                Luban.with(context).load(source).ignoreBy(100)
+                    .setCompressListener(object : OnNewCompressListener {
+                        override fun onStart() {
+                            // 空实现
+                        }
+
+                        override fun onSuccess(source: String, compressFile: File) {
+                            call?.onCallback(source, compressFile.absolutePath)
+                        }
+
+                        override fun onError(source: String, e: Throwable) {
+                            call?.onCallback(source, null)
+                        }
+                    }).launch()
+            })
             .apply {
                 if (config.crop != null) {
                     setCropEngine(CropEngine(cropOption))
@@ -663,6 +683,7 @@ class MultipleImagePickerImp(reactContext: ReactApplicationContext?) :
             parentFolderName = item.parentFolderName,
             creationDate = item.dateAddedTime.toDouble(),
             crop = item.isCut,
+            isOriginal = item.isOriginal,
             path,
             type,
             fileName = item.fileName,

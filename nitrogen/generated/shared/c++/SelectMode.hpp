@@ -37,24 +37,22 @@ namespace margelo::nitro::multipleimagepicker {
 
 namespace margelo::nitro {
 
-  using namespace margelo::nitro::multipleimagepicker;
-
   // C++ SelectMode <> JS SelectMode (union)
   template <>
-  struct JSIConverter<SelectMode> {
-    static inline SelectMode fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
+  struct JSIConverter<margelo::nitro::multipleimagepicker::SelectMode> final {
+    static inline margelo::nitro::multipleimagepicker::SelectMode fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("single"): return SelectMode::SINGLE;
-        case hashString("multiple"): return SelectMode::MULTIPLE;
+        case hashString("single"): return margelo::nitro::multipleimagepicker::SelectMode::SINGLE;
+        case hashString("multiple"): return margelo::nitro::multipleimagepicker::SelectMode::MULTIPLE;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum SelectMode - invalid value!");
       }
     }
-    static inline jsi::Value toJSI(jsi::Runtime& runtime, SelectMode arg) {
+    static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::multipleimagepicker::SelectMode arg) {
       switch (arg) {
-        case SelectMode::SINGLE: return JSIConverter<std::string>::toJSI(runtime, "single");
-        case SelectMode::MULTIPLE: return JSIConverter<std::string>::toJSI(runtime, "multiple");
+        case margelo::nitro::multipleimagepicker::SelectMode::SINGLE: return JSIConverter<std::string>::toJSI(runtime, "single");
+        case margelo::nitro::multipleimagepicker::SelectMode::MULTIPLE: return JSIConverter<std::string>::toJSI(runtime, "multiple");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert SelectMode to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");

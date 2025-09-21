@@ -10,8 +10,8 @@
 #include <fbjni/fbjni.h>
 #include <functional>
 
-#include <functional>
 #include "CropResult.hpp"
+#include <functional>
 #include "JCropResult.hpp"
 #include <string>
 
@@ -20,28 +20,54 @@ namespace margelo::nitro::multipleimagepicker {
   using namespace facebook;
 
   /**
-   * C++ representation of the callback Func_void_CropResult.
-   * This is a Kotlin `(result: CropResult) -> Unit`, backed by a `std::function<...>`.
+   * Represents the Java/Kotlin callback `(result: CropResult) -> Unit`.
+   * This can be passed around between C++ and Java/Kotlin.
    */
-  struct JFunc_void_CropResult final: public jni::HybridClass<JFunc_void_CropResult> {
+  struct JFunc_void_CropResult: public jni::JavaClass<JFunc_void_CropResult> {
+  public:
+    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_CropResult;";
+
+  public:
+    /**
+     * Invokes the function this `JFunc_void_CropResult` instance holds through JNI.
+     */
+    void invoke(const CropResult& result) const {
+      static const auto method = javaClassStatic()->getMethod<void(jni::alias_ref<JCropResult> /* result */)>("invoke");
+      method(self(), JCropResult::fromCpp(result));
+    }
+  };
+
+  /**
+   * An implementation of Func_void_CropResult that is backed by a C++ implementation (using `std::function<...>`)
+   */
+  struct JFunc_void_CropResult_cxx final: public jni::HybridClass<JFunc_void_CropResult_cxx, JFunc_void_CropResult> {
   public:
     static jni::local_ref<JFunc_void_CropResult::javaobject> fromCpp(const std::function<void(const CropResult& /* result */)>& func) {
-      return JFunc_void_CropResult::newObjectCxxArgs(func);
+      return JFunc_void_CropResult_cxx::newObjectCxxArgs(func);
     }
 
   public:
-    void call(jni::alias_ref<JCropResult> result) {
+    /**
+     * Invokes the C++ `std::function<...>` this `JFunc_void_CropResult_cxx` instance holds.
+     */
+    void invoke_cxx(jni::alias_ref<JCropResult> result) {
       _func(result->toCpp());
     }
 
   public:
-    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_CropResult;";
+    [[nodiscard]]
+    inline const std::function<void(const CropResult& /* result */)>& getFunction() const {
+      return _func;
+    }
+
+  public:
+    static auto constexpr kJavaDescriptor = "Lcom/margelo/nitro/multipleimagepicker/Func_void_CropResult_cxx;";
     static void registerNatives() {
-      registerHybrid({makeNativeMethod("call", JFunc_void_CropResult::call)});
+      registerHybrid({makeNativeMethod("invoke_cxx", JFunc_void_CropResult_cxx::invoke_cxx)});
     }
 
   private:
-    explicit JFunc_void_CropResult(const std::function<void(const CropResult& /* result */)>& func): _func(func) { }
+    explicit JFunc_void_CropResult_cxx(const std::function<void(const CropResult& /* result */)>& func): _func(func) { }
 
   private:
     friend HybridBase;

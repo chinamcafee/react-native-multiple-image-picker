@@ -89,7 +89,8 @@ public extension NitroCameraConfig {
     @inline(__always)
     get {
       return { () -> PickerCropConfig? in
-        if let __unwrapped = self.__crop.value {
+        if bridge.has_value_std__optional_PickerCropConfig_(self.__crop) {
+          let __unwrapped = bridge.get_std__optional_PickerCropConfig_(self.__crop)
           return __unwrapped
         } else {
           return nil

@@ -7,16 +7,17 @@
 
 import NitroModules
 
+
 /**
- * Wraps a Swift `((_ result: [PickerResult]) -> Void)` as a class.
+ * Wraps a Swift `(_ result: [PickerResult]) -> Void` as a class.
  * This class can be used from C++, e.g. to wrap the Swift closure as a `std::function`.
  */
 public final class Func_void_std__vector_PickerResult_ {
   public typealias bridge = margelo.nitro.multipleimagepicker.bridge.swift
 
-  private let closure: ((_ result: [PickerResult]) -> Void)
+  private let closure: (_ result: [PickerResult]) -> Void
 
-  public init(_ closure: @escaping ((_ result: [PickerResult]) -> Void)) {
+  public init(_ closure: @escaping (_ result: [PickerResult]) -> Void) {
     self.closure = closure
   }
 

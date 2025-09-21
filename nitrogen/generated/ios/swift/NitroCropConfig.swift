@@ -106,7 +106,8 @@ public extension NitroCropConfig {
     @inline(__always)
     get {
       return { () -> CropRatio? in
-        if let __unwrapped = self.__defaultRatio.value {
+        if bridge.has_value_std__optional_CropRatio_(self.__defaultRatio) {
+          let __unwrapped = bridge.get_std__optional_CropRatio_(self.__defaultRatio)
           return __unwrapped
         } else {
           return nil

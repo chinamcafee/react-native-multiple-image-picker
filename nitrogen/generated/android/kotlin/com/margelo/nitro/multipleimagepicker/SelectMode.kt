@@ -15,11 +15,7 @@ import com.facebook.proguard.annotations.DoNotStrip
  */
 @DoNotStrip
 @Keep
-enum class SelectMode {
-  SINGLE,
-  MULTIPLE;
-
-  @DoNotStrip
-  @Keep
-  private val _ordinal = ordinal
+enum class SelectMode(@DoNotStrip @Keep val value: Int) {
+  SINGLE(0),
+  MULTIPLE(1);
 }

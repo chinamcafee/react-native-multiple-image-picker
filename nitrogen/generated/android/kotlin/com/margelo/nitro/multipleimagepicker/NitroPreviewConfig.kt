@@ -11,12 +11,22 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "NitroPreviewConfig".
  */
 @DoNotStrip
 @Keep
-data class NitroPreviewConfig(
-  val language: Language,
-  val videoAutoPlay: Boolean?
-)
+data class NitroPreviewConfig
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val language: Language,
+    @DoNotStrip
+    @Keep
+    val videoAutoPlay: Boolean?
+  ) {
+  /* main constructor */
+}

@@ -11,14 +11,28 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "MediaPreview".
  */
 @DoNotStrip
 @Keep
-data class MediaPreview(
-  val type: ResultType,
-  val path: String?,
-  val thumbnail: String?,
-  val localIdentifier: String?
-)
+data class MediaPreview
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val type: ResultType,
+    @DoNotStrip
+    @Keep
+    val path: String?,
+    @DoNotStrip
+    @Keep
+    val thumbnail: String?,
+    @DoNotStrip
+    @Keep
+    val localIdentifier: String?
+  ) {
+  /* main constructor */
+}

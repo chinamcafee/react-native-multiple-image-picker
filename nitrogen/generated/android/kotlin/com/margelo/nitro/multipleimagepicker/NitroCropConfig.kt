@@ -11,16 +11,34 @@ import androidx.annotation.Keep
 import com.facebook.proguard.annotations.DoNotStrip
 import com.margelo.nitro.core.*
 
+
 /**
  * Represents the JavaScript object/struct "NitroCropConfig".
  */
 @DoNotStrip
 @Keep
-data class NitroCropConfig(
-  val language: Language,
-  val presentation: Presentation,
-  val circle: Boolean?,
-  val ratio: Array<CropRatio>,
-  val defaultRatio: CropRatio?,
-  val freeStyle: Boolean?
-)
+data class NitroCropConfig
+  @DoNotStrip
+  @Keep
+  constructor(
+    @DoNotStrip
+    @Keep
+    val language: Language,
+    @DoNotStrip
+    @Keep
+    val presentation: Presentation,
+    @DoNotStrip
+    @Keep
+    val circle: Boolean?,
+    @DoNotStrip
+    @Keep
+    val ratio: Array<CropRatio>,
+    @DoNotStrip
+    @Keep
+    val defaultRatio: CropRatio?,
+    @DoNotStrip
+    @Keep
+    val freeStyle: Boolean?
+  ) {
+  /* main constructor */
+}
