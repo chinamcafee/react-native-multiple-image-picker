@@ -117,6 +117,12 @@ repositories {
     google()
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.squareup.okhttp3:okhttp:4.12.0'
+        force 'com.squareup.okhttp3:logging-interceptor:4.12.0'
+    }
+}
 
 dependencies {
     // For < 0.71, this will be from the local maven repo
