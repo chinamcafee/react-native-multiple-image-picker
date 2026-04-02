@@ -19,14 +19,14 @@
         "NSPhotoLibraryUsageDescription": "We needs photo library permissions to allow you to upload profile images.",
         "NSMicrophoneUsageDescription": "We needs to access your microphone so that you can take your photo: (avatar, etc.)"
       },
-      "bundleIdentifier": "com.baoha.imagepicker"
+      "bundleIdentifier": "com.multipleimagepickerexample"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.baoha.imagepicker"
+      "package": "com.multipleimagepickerexample"
     },
 
     "plugins": [
@@ -38,9 +38,9 @@
             "useFrameworks": "static"
           },
           "android": {
-            "compileSdkVersion": 34,
-            "targetSdkVersion": 34,
-            "buildToolsVersion": "34.0.0"
+            "compileSdkVersion": 36,
+            "targetSdkVersion": 36,
+            "buildToolsVersion": "36.0.0"
           }
         }
       ]
