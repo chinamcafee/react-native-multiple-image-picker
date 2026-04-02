@@ -41,8 +41,8 @@ export async function openPicker<T extends Config>(
     config.backgroundDark = processColor(config.backgroundDark) as any
 
     if ((config as Config)?.theme === 'system') {
-      const theme = Appearance.getColorScheme() ?? 'light'
-      config.theme = theme
+      const scheme = Appearance.getColorScheme()
+      config.theme = scheme === 'dark' ? 'dark' : 'light'
     }
 
     config.language = validateLanguage(config.language)

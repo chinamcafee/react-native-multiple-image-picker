@@ -11,8 +11,14 @@
 
   "autolinking": {
     "MultipleImagePicker": {
-      "swift": "HybridMultipleImagePicker",
-      "kotlin": "MultipleImagePicker"
+      "ios": {
+        "language": "swift",
+        "implementationClassName": "HybridMultipleImagePicker"
+      },
+      "android": {
+        "language": "kotlin",
+        "implementationClassName": "MultipleImagePicker"
+      }
     }
   },
   "ignorePaths": ["node_modules"]
