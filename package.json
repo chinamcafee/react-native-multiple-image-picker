@@ -1,6 +1,6 @@
 {
   "name": "react-native-multiple-image-picker-editor",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "description": "react-native-multiple-image-picker enables applications to pick images and videos from multiple smart albums in iOS/Android And Edit Image in iOS/Android",
   "main": "./lib/commonjs/index.js",
   "module": "./lib/module/index.js",
@@ -58,7 +58,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "devDependencies": {
-    "@react-native/eslint-config": "^0.83.4",
+    "@react-native/eslint-config": "^0.81.6",
     "@types/jest": "^29.5.12",
     "@types/react": "^19.2.10",
     "eslint": "^8.57.0",
@@ -66,8 +66,8 @@
     "eslint-plugin-prettier": "^5.2.1",
     "nitrogen": "0.35.2",
     "prettier": "^3.3.3",
-    "react": "^19.2.0",
-    "react-native": "^0.83.4",
+    "react": "^19.1.0",
+    "react-native": "^0.81.6",
     "react-native-builder-bob": "^0.30.0",
     "react-native-nitro-modules": "0.35.2",
     "typescript": "^5.5.4"
