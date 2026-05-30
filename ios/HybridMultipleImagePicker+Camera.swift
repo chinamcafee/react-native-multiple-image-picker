@@ -87,21 +87,24 @@ extension HybridMultipleImagePicker {
 
                     let thumbnail = getVideoThumbnail(from: url.absoluteString, in: 1)
 
-                    var result = CameraResult(path: "file://\(url.absoluteString)",
-                                              type: ResultType.video,
-                                              width: nil,
-                                              height: nil,
-                                              duration: asset.duration.seconds,
-                                              thumbnail: thumbnail,
-                                              fileName: url.lastPathComponent)
+                    var width: Double?
+                    var height: Double?
 
                     if let track = asset.tracks(withMediaType: AVMediaType.video).first {
                         let trackSize = track.naturalSize.applying(track.preferredTransform)
                         let size = CGSize(width: abs(trackSize.width), height: abs(trackSize.height))
 
-                        result.width = Double(size.width)
-                        result.height = Double(size.height)
+                        width = Double(size.width)
+                        height = Double(size.height)
                     }
+
+                    let result = CameraResult(path: "file://\(url.absoluteString)",
+                                              type: ResultType.video,
+                                              width: width,
+                                              height: height,
+                                              duration: asset.duration.seconds,
+                                              thumbnail: thumbnail,
+                                              fileName: url.lastPathComponent)
 
                     resolved(result)
                 }
